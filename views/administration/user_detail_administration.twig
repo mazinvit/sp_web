@@ -1,0 +1,35 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Administrace uživatelů{% endblock %}
+{% block content %}
+    <h2>Administrace uživatelů</h2>
+    <div class="row">
+        <div class="form-group col-md-4 col-md-offset-4 col-xs-12">
+            <h3>{{ user.login }} - {{ user.jmeno }}</h3>
+            <form method="post" action="{{ makeURL('set_rights') }}">
+            <input type="hidden" value="{{ user.id }}" name="id">
+                <select class="form-control" name="rights">
+                {% if user.prava == 1 %}
+                    <option value="1" selected>Administrátor</option>
+                    <option value="2">Recenzent</option>
+                    <option value="3">Píšící příspěvky</option>
+                 {% elseif user.prava == 2 %}
+                     <option value="1">Administrátor</option>
+                     <option value="2" selected>Recenzent</option>
+                     <option value="3">Píšící příspěvky</option>
+                 {% else %}
+                     <option value="1">Administrátor</option>
+                     <option value="2">Recenzent</option>
+                     <option value="3" selected>Píšící příspěvky</option>
+                 {% endif %}
+                </select>
+                <br>
+                <button type="submit" class="btn btn-info">Upravit práva</button>
+            </form>
+            <br>
+            <form method="post" action="{{ makeURL('delete_user') }}">
+                <input type="hidden" value="{{ user.id }}" name="id">
+                <button type="submit" class="btn btn-danger">Vymazat</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

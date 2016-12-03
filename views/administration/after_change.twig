@@ -1,0 +1,12 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Stránka nenalezena{% endblock %}
+{% block content %}
+    {% if changes == 1 %}
+        <h2>OK</h2>
+        <p>Uživateli byla změněna práva.</p>
+    {% else %}
+        <h2>Chyba</h2>
+        <p>Práva se napodařilo změnit!</p>
+    {% endif %}
+    <p><a href="{{ makeURL('user_administration') }}">Zpět na administraci uživatelů</a></p>
+{% endblock %}

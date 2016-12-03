@@ -1,0 +1,10 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Úvod{% endblock %}
+{% block content %}
+    {% if session.uzivatel is defined %}
+        <h2>Vítej {{ session.uzivatel.login }}</h2>
+    {% else %}
+        <h2>Vítej</h2>
+    {% endif %}
+    <p>Semestrálka Vít Mazín</p>
+{% endblock %}
