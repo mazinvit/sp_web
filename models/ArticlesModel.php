@@ -12,10 +12,29 @@ namespace Sp\Models;
 class ArticlesModel extends Model
 {
     public function getAllArticlesForHome() {
-        //all_articles je pohled v DB
-        $q = $this->db->prepare("SELECT * FROM all_articles");
+        /*
+         SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
+                          FROM prispevky p, recenze r WHERE schvaleno = 1 AND p.id = r.id_prispevek
+         */
+        $q = $this->db->prepare("SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
+                          FROM prispevky p, recenze r WHERE schvaleno = 1 AND p.id = r.id_prispevek");
 
         $q->execute();
+        if($q->columnCount() > 0) {
+            return $q->fetchAll();
+        }
+
+        else {
+            return null;
+        }
+    }
+
+    public function getMyArticles() {
+        $q = $this->db->prepare("SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
+                          FROM prispevky p, recenze r WHERE p.id_uzivatel = :id AND p.id = r.id_prispevek");
+        $q->bindParam(":id", $_SESSION['uzivatel']['id']);
+        $q->execute();
+
         if($q->columnCount() > 0) {
             return $q->fetchAll();
         }
@@ -37,8 +56,6 @@ class ArticlesModel extends Model
         $q->bindParam(":pdf", htmlspecialchars(stripslashes($pdf['name']), ENT_QUOTES, 'UTF-8'));
         $q->bindParam(":id_uzivatele", htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
         $q->bindParam(":schvaleno", $schvaleno);
-
-        $q->execute();
 
         if(!$q->execute()) {
             return false;
