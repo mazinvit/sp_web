@@ -2,6 +2,15 @@
 {% block title %}Registrace{% endblock %}
 {% block content %}
     <h2>Registrace</h2>
+    {% if alert == 1 %}
+        <div class="alert alert-success">
+            <strong>Úspěch!</strong> Registrace proběhla v pořádku. Můžete se přihlásit.
+        </div>
+    {% elseif alert == 2 %}
+        <div class="alert alert-danger">
+            <strong>Chyba!</strong> Registrace se nepovedla.
+        </div>
+    {% endif %}
     <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
         <span style="display: none;" id="fill1"><p style="color: red;">Je třeba vyplnit vše!</p></span>
         <span style="display: none;" id="fill2"><p style="color: red;">Zadaná hesla se neshodují!</p></span>

@@ -55,7 +55,24 @@ class UserController extends Controller
     }
 
     public function register_page() {
-        echo $this->twig->render('register_page.twig');
+        $template = $this->twig->loadTemplate('register_page.twig');
+        if(isset($_SESSION['alert'])) {
+
+            if($_SESSION['alert'] != 0) {
+                $params['alert'] = $_SESSION['alert'];
+                $_SESSION['alert'] = 0;
+            }
+
+            else {
+                $params['alert'] = 0;
+            }
+        }
+
+        else {
+            $params['alert'] = 0;
+        }
+
+        echo $template->render($params);
     }
 
     public function register() {
@@ -67,11 +84,13 @@ class UserController extends Controller
             $reg = $_POST['reg'];
 
             if($this->modelUser->registrate($reg)) {
-                $this->redirection("User", "okregister");
+                $_SESSION['alert'] = 1;
+                $this->redirection("User", "register_page");
             }
 
             else {
-                $this->redirection("User", "errorregister");
+                $_SESSION['alert'] = 2;
+                $this->redirection("User", "register_page");
             }
         }
 
