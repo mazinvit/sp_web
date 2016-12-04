@@ -71,7 +71,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{ makeURL('Home', 'index') }}">Úvod</a></li>
-                <li><a href="#">Link</a></li>
+                <li><a href="{{ makeURL('Home', 'articles') }}">Články</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if session.uzivatel is defined %}
@@ -80,8 +80,9 @@
                     <ul class="dropdown-menu">
                         {% if session.uzivatel.prava == 1 %}
                             <li><a href="{{ makeURL('Admin', 'administration') }}">Administrace</a></li>
+                        {% elseif session.uzivatel.prava == 3 %}
+                            <li><a href="{{ makeURL('Author', 'author_section') }}">Sekce pro autory</a></li>
                         {% endif %}
-                        <li><a href="#">Action</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ makeURL('User', 'signout') }}">Odhlásit</a></li>
                     </ul>

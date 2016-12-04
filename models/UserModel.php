@@ -170,4 +170,20 @@ class UserModel extends Model
             return false;
         }
     }
+
+    public function isAuthor() {
+        if(isset($_SESSION['uzivatel'])) {
+            if($_SESSION['uzivatel']['prava'] == 3) {
+                return true;
+            }
+
+            else {
+                return false;
+            }
+        }
+
+        else {
+            return false;
+        }
+    }
 }

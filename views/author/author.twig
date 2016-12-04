@@ -1,0 +1,8 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Sekce pro autory{% endblock %}
+{% block content %}
+    <h2>Sekce pro autory</h2>
+    <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
+        <a href="{{ makeURL('Author', 'write_article') }}" class="btn btn-default btn-lg btn-block btn-huge">Přidat příspěvek</a>
+    </div>
+{% endblock %}

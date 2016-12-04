@@ -66,7 +66,9 @@ class AdminController extends Controller
                 $template = $this->twig->loadTemplate('administration/user_detail_administration.twig');
                 $params['user'] = $user;
                 echo $template->render($params);
-            } else {
+            }
+
+            else {
                 $this->redirection("Admin", "user_administration");
             }
         }

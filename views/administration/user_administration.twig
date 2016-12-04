@@ -4,11 +4,11 @@
     <h2>Administrace uživatelů</h2>
     <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
         <form method="post" action="{{ makeURL('Admin', 'user_detail_administration')}}">
-        <h3>Vyberte uživatele:</h3>
+            <h3>Vyberte uživatele:</h3>
             <select class="form-control" name="id">
-            {% for key, user in users %}
-                <option value="{{ user.id }}">{{ user.login }} - {{ user.jmeno }}</option>
-            {% endfor %}
+                {% for key, user in users %}
+                    <option value="{{ user.id }}">{{ user.login }} - {{ user.jmeno }}</option>
+                {% endfor %}
             </select>
             <br>
             <button type="submit" class="btn btn-success">Potvrdit</button>

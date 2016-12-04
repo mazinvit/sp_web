@@ -102,12 +102,4 @@ class UserController extends Controller
     public function wrongsign() {
         echo $this->twig->render('wrongsign.twig');
     }
-
-    public function okregister() {
-        echo $this->twig->render('okregister.twig');
-    }
-
-    public function errorregister() {
-        echo $this->twig->render('errorregister.twig');
-    }
 }

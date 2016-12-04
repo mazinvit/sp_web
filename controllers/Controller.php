@@ -13,7 +13,6 @@ namespace Sp\Controlers;
 class Controller
 {
     protected $twig;
-    private $modelUser = null;
 
     public function __construct()
     {

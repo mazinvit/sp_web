@@ -1,0 +1,31 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Články{% endblock %}
+{% block content %}
+    <h2>Články</h2>
+    <div class="row">
+        <div class="form-group col-xs-12">
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <td>Název článku</td>
+                        <td>Autor</td>
+                        <td>Abstratkt</td>
+                        <td>Průměrné hodnocení</td>
+                        <td>PDF</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for key, article in articles %}
+                    <tr>
+                        <td>{{ article.nazev }}</td>
+                        <td>{{ article.autori }}</td>
+                        <td>{{ article.abstract }}</td>
+                        <td>{{ article.hodnoceni|number_format(2, '.', ',') }}</td>
+                        <td><a href="{{ makeURL('Home', 'download_pdf', '') }}{{ article.pdf }}">{{ article.pdf }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
