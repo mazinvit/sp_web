@@ -3,6 +3,7 @@
 // tento namespace pak poutivas k volani trid, bohuzel tu neni autoloading takze musis ty tridy manualne includovat
 namespace Sp\Controlers;
 
+
 /**
  * Created by PhpStorm.
  * User: vitmazin
@@ -19,6 +20,7 @@ class Controller
         $loader = new \Twig_Loader_Filesystem(ROOT.'views');
         $this->twig = new \Twig_Environment($loader);
         $this->twig->addFunction(new \Twig_SimpleFunction("makeURL", array($this, "makeURL")));
+        $this->twig->addExtension(new \Twig_Extensions_Extension_Text());
         $this->twig->addGlobal("session", $_SESSION);
     }
 

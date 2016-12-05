@@ -15,11 +15,11 @@ class UserModel extends Model
         if($this->validation($reg)) {
             $q = $this->db->prepare("INSERT INTO `uzivatele` (login, pass, jmeno, email, prava) 
                                      VALUES (:login, :pass, :jmeno, :email, :prava)");
-            $q->bindParam(':login', htmlspecialchars(stripslashes($reg['login']), ENT_QUOTES, 'UTF-8'));
-            $q->bindParam(':pass',  sha1(htmlspecialchars(stripslashes($reg['pass1']),  ENT_QUOTES, 'UTF-8')));
-            $q->bindParam(':jmeno', htmlspecialchars(stripslashes($reg['jmeno']), ENT_QUOTES, 'UTF-8'));
-            $q->bindParam(':email', htmlspecialchars(stripslashes($reg['email']), ENT_QUOTES, 'UTF-8'));
-            $q->bindParam(':prava', $prava);
+            $q->bindValue(':login', htmlspecialchars(stripslashes($reg['login']), ENT_QUOTES, 'UTF-8'));
+            $q->bindValue(':pass',  sha1(htmlspecialchars(stripslashes($reg['pass1']),  ENT_QUOTES, 'UTF-8')));
+            $q->bindValue(':jmeno', htmlspecialchars(stripslashes($reg['jmeno']), ENT_QUOTES, 'UTF-8'));
+            $q->bindValue(':email', htmlspecialchars(stripslashes($reg['email']), ENT_QUOTES, 'UTF-8'));
+            $q->bindValue(':prava', $prava);
             if($q->execute()) {
                 return true;
             }
@@ -67,7 +67,7 @@ class UserModel extends Model
 
     private function inDB($reg) {
         $q = $this->db->prepare("SELECT `id` FROM `uzivatele` WHERE `login` = :login");
-        $q->bindParam(':login', $reg['login']);
+        $q->bindValue(':login', $reg['login']);
         $q->execute();
 
         if($q->rowCount() == 1) {
@@ -81,8 +81,8 @@ class UserModel extends Model
 
     private function selectUserByLoginAndPass($login, $password) {
         $q = $this->db->prepare("SELECT * FROM `uzivatele` WHERE `login` = :login AND `pass` = :pass");
-        $q->bindParam(':login', htmlspecialchars(stripslashes($login), ENT_QUOTES, 'UTF-8'));
-        $q->bindParam(':pass', sha1($password));
+        $q->bindValue(':login', htmlspecialchars(stripslashes($login), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(':pass', sha1($password));
         $q->execute();
 
         if($q->rowCount() != 0) {
@@ -97,7 +97,7 @@ class UserModel extends Model
     public function selectUserByID($id) {
         $id_esc = htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8');
         $q = $this->db->prepare("SELECT * FROM `uzivatele` WHERE `id` = :id");
-        $q->bindParam(':id', $id_esc);
+        $q->bindValue(':id', $id_esc);
         $q->execute();
 
         if($q->rowCount() != 0) {
@@ -114,8 +114,8 @@ class UserModel extends Model
         $rights_esc = htmlspecialchars(stripslashes($rights), ENT_QUOTES, 'UTF-8');
 
         $q = $this->db->prepare("UPDATE `uzivatele` SET `prava` = :prava WHERE `id` = :id");
-        $q->bindParam(":prava", $rights_esc);
-        $q->bindParam(":id", $id_esc);
+        $q->bindValue(":prava", $rights_esc);
+        $q->bindValue(":id", $id_esc);
 
         $ret = $q->execute();
 
@@ -130,7 +130,7 @@ class UserModel extends Model
 
     public function deleteUser($id) {
         $q = $this->db->prepare("DELETE FROM `uzivatele` WHERE `id` = :id");
-        $q->bindParam(':id', htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(':id', htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
         $ret = $q->execute();
 
         if($ret == 0) {

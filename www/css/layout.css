@@ -27,3 +27,7 @@ body {
     cursor: inherit;
     display: block;
 }
+
+span.article {
+    font-size: 1.5em;
+}

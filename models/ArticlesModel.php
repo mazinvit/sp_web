@@ -31,7 +31,7 @@ class ArticlesModel extends Model
     public function getMyArticles() {
         $q = $this->db->prepare("SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
                           FROM prispevky p, recenze r WHERE p.id_uzivatel = :id AND p.id = r.id_prispevek");
-        $q->bindParam(":id", $_SESSION['uzivatel']['id']);
+        $q->bindValue(":id", $_SESSION['uzivatel']['id']);
         $q->execute();
 
         if($q->columnCount() > 0) {
@@ -45,8 +45,9 @@ class ArticlesModel extends Model
 
     public function add_article($article, $id, $pdf) {
         $schvaleno = 0;
-        $q = $this->db->prepare("INSERT INTO prispevky (nazev, autori, abstract, pdf, id_uzivatel, schvaleno) 
-                                      VALUES (:nazev, :autori, :abstract, :pdf, :id_uzivatele, :schvaleno)");
+        $prumer = 0.0;
+        $q = $this->db->prepare("INSERT INTO prispevky (nazev, autori, abstract, pdf, id_uzivatel, schvaleno, prumer_hodnoc) 
+                                      VALUES (:nazev, :autori, :abstract, :pdf, :id_uzivatele, :schvaleno, :prumer_hodnoc)");
         $naz = $article['nazev'];
         $nazev = htmlspecialchars(stripslashes($naz), ENT_QUOTES, 'UTF-8');
         $aut = $article['autori'];
@@ -58,6 +59,7 @@ class ArticlesModel extends Model
         $q->bindValue(":pdf", htmlspecialchars(stripslashes($pdf['name']), ENT_QUOTES, 'UTF-8'));
         $q->bindValue(":id_uzivatele", htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
         $q->bindValue(":schvaleno", $schvaleno);
+        $q->bindValue(":prumer_hodnoc", $prumer);
 
         if(!$q->execute()) {
             return false;
@@ -93,8 +95,8 @@ class ArticlesModel extends Model
 
     private function deletArticleCouseOfError($nazev, $autori) {
         $q = $this->db->prepare("DELETE FROM prispevky WHERE nazev = :nazev AND autori = :autori");
-        $q->bindParam(":nazev", $nazev);
-        $q->bindParam(":autori", $autori);
+        $q->bindValue(":nazev", $nazev);
+        $q->bindValue(":autori", $autori);
         $q->execute();
     }
 }
