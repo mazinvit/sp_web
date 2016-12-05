@@ -16,8 +16,7 @@ class ArticlesModel extends Model
          SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
                           FROM prispevky p, recenze r WHERE schvaleno = 1 AND p.id = r.id_prispevek
          */
-        $q = $this->db->prepare("SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
-                          FROM prispevky p, recenze r WHERE schvaleno = 1 AND p.id = r.id_prispevek");
+        $q = $this->db->prepare("SELECT * FROM prispevky WHERE schvaleno = 1");
 
         $q->execute();
         if($q->columnCount() > 0) {
@@ -48,14 +47,17 @@ class ArticlesModel extends Model
         $schvaleno = 0;
         $q = $this->db->prepare("INSERT INTO prispevky (nazev, autori, abstract, pdf, id_uzivatel, schvaleno) 
                                       VALUES (:nazev, :autori, :abstract, :pdf, :id_uzivatele, :schvaleno)");
-        $nazev = htmlspecialchars(stripslashes($article['nazev']), ENT_QUOTES, 'UTF-8');
-        $autori = htmlspecialchars(stripslashes($article['autori']), ENT_QUOTES, 'UTF-8');
-        $q->bindParam(":nazev", $nazev);
-        $q->bindParam(":autori", $autori);
-        $q->bindParam(":abstract", htmlspecialchars(stripslashes($article['abstract']), ENT_QUOTES, 'UTF-8'));
-        $q->bindParam(":pdf", htmlspecialchars(stripslashes($pdf['name']), ENT_QUOTES, 'UTF-8'));
-        $q->bindParam(":id_uzivatele", htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
-        $q->bindParam(":schvaleno", $schvaleno);
+        $naz = $article['nazev'];
+        $nazev = htmlspecialchars(stripslashes($naz), ENT_QUOTES, 'UTF-8');
+        $aut = $article['autori'];
+        $autori = htmlspecialchars(stripslashes($aut), ENT_QUOTES, 'UTF-8');
+        $q->bindValue(":nazev", $nazev);
+        $q->bindValue(":autori", $autori);
+        $abstract = $article['abstract'];
+        $q->bindValue(":abstract", htmlspecialchars(stripslashes($abstract), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(":pdf", htmlspecialchars(stripslashes($pdf['name']), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(":id_uzivatele", htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(":schvaleno", $schvaleno);
 
         if(!$q->execute()) {
             return false;
@@ -64,11 +66,12 @@ class ArticlesModel extends Model
         $file_name = $pdf['name'];
         $file_size = $pdf['size'];
         $file_tmp = $pdf['tmp_name'];
-        $file_ext = strtolower(end(explode('.',$pdf['name'])));
+        $pdfname = $pdf['name'];
+        $file_ext = strtolower(pathinfo($pdfname, PATHINFO_EXTENSION));
 
-        $expensions= array("pdf");
+        $expensions = array("pdf");
 
-        if(in_array($file_ext, $expensions)=== false){
+        if(in_array($file_ext, $expensions) == false){
             $this->deletArticleCouseOfError($nazev, $autori);
             return false;
         }

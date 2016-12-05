@@ -89,7 +89,8 @@ class AuthorController extends Controller
                     $_SESSION['alert'] = 2;
                     $this->redirection('Author', 'write_article');
                 }
-            } else {
+            }
+            else {
                 $_SESSION['alert'] = 2;
                 $this->redirection('Author', 'write_article');
             }

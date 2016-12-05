@@ -10,7 +10,6 @@
                         <td>Název článku</td>
                         <td>Autor</td>
                         <td>Abstratkt</td>
-                        <td>Průměrné hodnocení</td>
                         <td>PDF</td>
                     </tr>
                 </thead>
@@ -20,8 +19,7 @@
                         <td>{{ article.nazev }}</td>
                         <td>{{ article.autori }}</td>
                         <td>{{ article.abstract }}</td>
-                        <td>{{ article.hodnoceni|number_format(2, '.', ',') }}</td>
-                        <td><a href="{{ makeURL('Home', 'download_pdf', '') }}{{ article.pdf }}">{{ article.pdf }}</a></td>
+                        <td><a href="{{ makeURL('Home', 'download_pdf', '') }}{{ article.pdf }}"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
