@@ -34,7 +34,13 @@ class Controller
         }
     }
 
-    protected function redirection($page = "Home", $action = "index") {
-        header("location:".$this->makeURL($page, $action));
+    protected function redirection($page = "Home", $action = "index", $parametr = null) {
+        if($parametr == null) {
+            header("location:" . $this->makeURL($page, $action));
+        }
+
+        else {
+            header("location:" . $this->makeURL($page, $action, $parametr));
+        }
     }
 }

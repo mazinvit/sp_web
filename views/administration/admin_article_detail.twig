@@ -1,0 +1,41 @@
+{% extends 'templates/template.twig' %}
+{% block title %}{{ article.nazev }}{% endblock %}
+{% block content %}
+    <h2>{{ article.nazev }}</h2>
+    <p><strong>Autoři: </strong>{{ article.autori }}</p>
+    <p><strong>Počet recenzí: </strong>{{ reviews_count }}</p>
+    <p><strong>Abstrakt: </strong>{{ article.abstract }}</p>
+    {% if article.schvaleno == 0 %}
+        {% if reviews_count < 3 %}
+            <p><strong>Povolit/zamítnout: </strong><div class="btn btn-static">Přijmout</div>
+                <div class="btn btn-static">Zamítnout</div>
+            </p>
+        {% else %}
+            <form method="post" action="{{ makeURL('Admin', 'set_allow_or_deny') }}" class="col-md-2 col-xs-4">
+                <input type="hidden" value="1" name="allow">
+                <input type="hidden" value="{{ article.id }}" name="id">
+                <button type="submit" class="form-control btn btn-success" >Přijmout</button>
+            </form>
+            <form method="post" action="{{ makeURL('Admin', 'set_allow_or_deny') }}" class="col-md-2 col-xs-4">
+                <input type="hidden" value="-1" name="allow">
+                <input type="hidden" value="{{ article.id }}" name="id">
+                <button type="submit" class="form-control btn btn-danger" >Zamítnout</button>
+            </form>
+        {% endif %}
+    {% endif %}
+    <div class="form-group col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12">
+        <table class="table table-responsive table-striped admin_article">
+            <thead>
+                <tr>
+                    <td><strong>Název</strong></td>
+                    <td><strong>Autoři</strong></td>
+                    <td><strong>Průměr. hodnocení</strong></td>
+                    <td><strong>Upravit</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

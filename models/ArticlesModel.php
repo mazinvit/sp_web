@@ -115,6 +115,31 @@ class ArticlesModel extends Model
         }
     }
 
+    public function getCountReviews($id) {
+        $q = $this->db->prepare("SELECT originalita FROM recenze WHERE id_prispevek = :id");
+        $q->bindValue(":id", $id);
+        $q->execute();
+
+        $arr = $q->fetchAll();
+
+        $ret = 0;
+
+        foreach($arr as $col) {
+            if($col['originalita'] > 0) {
+                $ret++;
+            }
+        }
+
+        return $ret;
+    }
+
+    public function setAllowOrDeny($allow, $id) {
+        $q = $this->db->prepare("UPDATE prispevky SET schvaleno = :schvaleno WHERE id = :id");
+        $q->bindValue(":schvaleno", $allow);
+        $q->bindValue(":id", $id);
+        $q->execute();
+    }
+
     private function deletArticleCouseOfError($nazev, $autori) {
         $q = $this->db->prepare("DELETE FROM prispevky WHERE nazev = :nazev AND autori = :autori");
         $q->bindValue(":nazev", $nazev);

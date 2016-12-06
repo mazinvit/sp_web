@@ -28,6 +28,18 @@ body {
     display: block;
 }
 
+.btn-static {
+    background-color: white;
+    border: 1px solid lightgrey;
+    cursor: default;
+}
+
+.btn-static:active {
+    -moz-box-shadow: inset 0 0 0px white;
+    -webkit-box-shadow: inset 0 0 0px white;
+    box-shadow: inset 0 0 0px white;
+}
+
 span.article {
     font-size: 1.5em;
 }

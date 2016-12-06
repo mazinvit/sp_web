@@ -165,8 +165,28 @@ class AdminController extends Controller
             else {
                 $template = $this->twig->loadTemplate('administration/admin_article_detail.twig');
                 $params['article'] = $article;
+                $params['reviews_count'] = $this->modelArticles->getCountReviews($id);
                 echo $template->render($params);
             }
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
+
+    public function set_allow_or_deny() {
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelUser->isAdmin()) {
+            $this->modelArticles->setAllowOrDeny($_POST['allow'], $_POST['id']);
+            $this->redirection('Admin', 'article_detail', $_POST['id']);
         }
 
         else {
