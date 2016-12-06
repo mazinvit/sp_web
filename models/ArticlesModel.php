@@ -12,10 +12,6 @@ namespace Sp\Models;
 class ArticlesModel extends Model
 {
     public function getAllArticlesForHome() {
-        /*
-         SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
-                          FROM prispevky p, recenze r WHERE schvaleno = 1 AND p.id = r.id_prispevek
-         */
         $q = $this->db->prepare("SELECT * FROM prispevky WHERE schvaleno = 1");
 
         $q->execute();
@@ -140,10 +136,53 @@ class ArticlesModel extends Model
         $q->execute();
     }
 
+    public function getAllReviewers($id) {
+        $q = $this->db->prepare("SELECT r.*, u.jmeno, u.id, ((r.originalita + r.pravopis + r.srozumitelnost + r.tema) / 4.0) AS prumer
+                      FROM recenze r, uzivatele u WHERE r.id_prispevek = :id AND u.id = r.id_uzivatel");
+        $q->bindValue(":id", $id);
+        $q->execute();
+
+        if($q->rowCount() > 0) {
+            return $q->fetchAll();
+        }
+
+        else {
+            return false;
+        }
+    }
+
+    public function deleteReviewer($id) {
+        $q = $this->db->prepare("DELETE FROM recenze WHERE id_uzivatel = :id");
+        $q->bindValue(":id", $id);
+        $q->execute();
+    }
+
+    public function getPosibleReviewers($id) {
+        $q = $this->db->prepare("SELECT * FROM uzivatele WHERE prava = 2 AND id NOT IN (SELECT id_uzivatel FROM recenze WHERE id_prispevek = :id)");
+        $q->bindValue(":id", $id);
+        $q->execute();
+
+        return $q->fetchAll();
+    }
+
     private function deletArticleCouseOfError($nazev, $autori) {
         $q = $this->db->prepare("DELETE FROM prispevky WHERE nazev = :nazev AND autori = :autori");
         $q->bindValue(":nazev", $nazev);
         $q->bindValue(":autori", $autori);
+        $q->execute();
+    }
+
+    public function addReviewer($id_article, $id_reviewer) {
+        $q = $this->db->prepare("INSERT INTO recenze (id_uzivatel, id_prispevek, originalita, tema, pravopis, srozumitelnost) 
+                                    VALUES (:id_reviewer, :id_article, :orig, :tema, :pravopis, :srozum)");
+        $orig = $tema = $pravopis = $srozum = 0;
+        $q->bindValue(":id_reviewer", $id_reviewer);
+        $q->bindValue(":id_article", $id_article);
+        $q->bindValue(":orig", $orig);
+        $q->bindValue(":tema", $tema);
+        $q->bindValue(":pravopis", $pravopis);
+        $q->bindValue(":srozum", $srozum);
+
         $q->execute();
     }
 }

@@ -163,9 +163,12 @@ class AdminController extends Controller
             }
 
             else {
+                $_SESSION['article_detail'] = $article['id'];
                 $template = $this->twig->loadTemplate('administration/admin_article_detail.twig');
                 $params['article'] = $article;
                 $params['reviews_count'] = $this->modelArticles->getCountReviews($id);
+                $params['reviewers'] = $this->modelArticles->getAllReviewers($id);
+                $params['posible_reviewers'] = $this->modelArticles->getPosibleReviewers($id);
                 echo $template->render($params);
             }
         }
@@ -186,7 +189,45 @@ class AdminController extends Controller
 
         if($this->modelUser->isAdmin()) {
             $this->modelArticles->setAllowOrDeny($_POST['allow'], $_POST['id']);
-            $this->redirection('Admin', 'article_detail', $_POST['id']);
+            $this->redirection('Admin', 'article_detail', $_SESSION['article_detail']);
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
+
+    public function delete_reviewer($id) {
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelUser->isAdmin()) {
+            $this->modelArticles->deleteReviewer($id);
+            $this->redirection('Admin', 'article_detail', $_SESSION['article_detail']);
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
+
+    public function add_reviewer() {
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelUser->isAdmin()) {
+            $this->modelArticles->addReviewer($_POST['id_article'], $_POST['id_reviewer']);
+            $this->redirection('Admin', 'article_detail', $_SESSION['article_detail']);
         }
 
         else {
