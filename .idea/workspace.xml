@@ -501,16 +501,16 @@
       <workItem from="1480789096603" duration="3923000" />
       <workItem from="1480839330108" duration="18569000" />
       <workItem from="1480888755097" duration="375000" />
-      <workItem from="1480891024679" duration="4845000" />
+      <workItem from="1480891024679" duration="5084000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30217000" />
+    <option name="totallyTimeSpent" value="30456000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22603719" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
