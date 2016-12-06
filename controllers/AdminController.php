@@ -9,12 +9,15 @@
 namespace Sp\Controlers;
 
 use Sp\Models\UserModel;
+use Sp\Models\ArticlesModel;
 
 require_once ROOT . "models" . DIRECTORY_SEPARATOR . "UserModel.php";
+require_once ROOT . "models" . DIRECTORY_SEPARATOR . "ArticlesModel.php";
 
 class AdminController extends Controller
 {
-    private $modelUser;
+    private $modelUser = null;
+    private $modelArticles = null;
 
     public function administration() {
         if($this->modelUser == null) {
@@ -116,6 +119,54 @@ class AdminController extends Controller
             $this->modelUser->deleteUser($id);
 
             $this->redirection("Admin", "user_administration");
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
+    
+    public function admin_article() {
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+        
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+        
+        if($this->modelUser->isAdmin()) {
+            $template = $this->twig->loadTemplate('administration/admin_article.twig');
+            $params['articles'] = $this->modelArticles->getAllArticles();
+            echo $template->render($params);
+        }
+        
+        else {
+            $this->redirection();
+        }
+    }
+
+    public function article_detail($id) {
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelUser->isAdmin()) {
+            $article = $this->modelArticles->getArticleById($id);
+
+            if($article == null) {
+                $this->redirection('Admin', 'admin_artciles');
+            }
+
+            else {
+                $template = $this->twig->loadTemplate('administration/admin_article_detail.twig');
+                $params['article'] = $article;
+                echo $template->render($params);
+            }
         }
 
         else {

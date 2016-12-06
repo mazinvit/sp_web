@@ -28,6 +28,14 @@ class ArticlesModel extends Model
         }
     }
 
+    public function getAllArticles() {
+        $q = $this->db->prepare("SELECT * FROM prispevky");
+
+        $q->execute();
+
+        return $q->fetchAll();
+    }
+
     public function getMyArticles() {
         $q = $this->db->prepare("SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
                           FROM prispevky p, recenze r WHERE p.id_uzivatel = :id AND p.id = r.id_prispevek");
@@ -90,6 +98,20 @@ class ArticlesModel extends Model
         else {
             $this->deletArticleCouseOfError($nazev, $autori);
             return false;
+        }
+    }
+
+    public function getArticleById($id) {
+        $q = $this->db->prepare("SELECT * FROM prispevky WHERE id = :id");
+        $q->bindValue(":id", $id);
+        $q->execute();
+
+        if($q->columnCount() > 0) {
+            return $q->fetch();
+        }
+
+        else {
+            return null;
         }
     }
 

@@ -1,0 +1,29 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Administrace příspěvků{% endblock %}
+{% block content %}
+    <h2>Administrace příspěvků</h2>
+    <div class="form-group col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12">
+        <table class="table table-responsive table-striped admin_article">
+            <thead>
+                <tr>
+                    <td><strong>Název</strong></td>
+                    <td><strong>Autoři</strong></td>
+                    <td><strong>Průměr. hodnocení</strong></td>
+                    <td><strong>Upravit</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, article in articles %}
+                    <tr>
+                        <td>{{ article.nazev }}</td>
+                        <td>{{ article.autori }}</td>
+                        <td>{{ article.prumer_hodnoc }}</td>
+                        <td><a href="{{ makeURL('Admin', 'article_detail', '') }}{{ article.id }}">
+                                <span class="glyphicon glyphicon-cog article" aria-hidden="true"></span>
+                            </a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
