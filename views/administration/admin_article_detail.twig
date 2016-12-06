@@ -25,7 +25,7 @@
         {% endif %}
     {% endif %}
     <p><strong>Recenzenti: </strong></p>
-    <div class="form-group col-lg-offset-3 col-md-8 col-md-offset-2 col-xs-12">
+    <div class="form-group col-md-8 col-md-offset-2 col-xs-12">
         <table class="table table-responsive table-striped admin_article">
             <thead>
                 <tr>
@@ -35,7 +35,7 @@
                     <td><strong>Pravopis</strong></td>
                     <td><strong>Srozum.</strong></td>
                     <td><strong>Průměr. hodnoc.</strong></td>
-                    <td><strong></strong></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
                     <td>{{ reviewer.tema }}</td>
                     <td>{{ reviewer.pravopis }}</td>
                     <td>{{ reviewer.srozumitelnost }}</td>
-                    <td>{{ reviewer.prumer }}</td>
+                    <td>{{ reviewer.prumer|number_format(2, '.', ',') }}</td>
                     <td><a href="{{ makeURL('Admin', 'delete_reviewer', '') }}{{ reviewer.id }}"><span class="glyphicon glyphicon-remove article" aria-hidden="true"></span></a></td>
                 </tr>
             {% endfor %}

@@ -226,7 +226,9 @@ class AdminController extends Controller
         }
 
         if($this->modelUser->isAdmin()) {
-            $this->modelArticles->addReviewer($_POST['id_article'], $_POST['id_reviewer']);
+            if(!empty($_POST['id_reviewer'])) {
+                $this->modelArticles->addReviewer($_POST['id_article'], $_POST['id_reviewer']);
+            }
             $this->redirection('Admin', 'article_detail', $_SESSION['article_detail']);
         }
 

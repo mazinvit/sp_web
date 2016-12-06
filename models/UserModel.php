@@ -171,6 +171,22 @@ class UserModel extends Model
         }
     }
 
+    public function isReviewer() {
+        if(isset($_SESSION['uzivatel'])) {
+            if($_SESSION['uzivatel']['prava'] == 2) {
+                return true;
+            }
+
+            else {
+                return false;
+            }
+        }
+
+        else {
+            return false;
+        }
+    }
+
     public function isAuthor() {
         if(isset($_SESSION['uzivatel'])) {
             if($_SESSION['uzivatel']['prava'] == 3) {

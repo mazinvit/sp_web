@@ -81,7 +81,9 @@
                     <ul class="dropdown-menu">
                         {% if session.uzivatel.prava == 1 %}
                             <li><a href="{{ makeURL('Admin', 'administration') }}">Administrace</a></li>
-                        {% elseif session.uzivatel.prava == 3 %}
+                        {% elseif session.uzivatel.prava == 2 %}
+                            <li><a href="{{ makeURL('Reviewer', 'my_reviews') }}">Moje hodnocní</a></li>
+                        {% else %}
                             <li><a href="{{ makeURL('Author', 'author_section') }}">Sekce pro autory</a></li>
                         {% endif %}
                         <li role="separator" class="divider"></li>

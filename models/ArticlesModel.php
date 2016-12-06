@@ -47,6 +47,32 @@ class ArticlesModel extends Model
         }
     }
 
+    private function uploadFile($pdf) {
+        $file_name = $pdf['name'];
+        $file_size = $pdf['size'];
+        $file_tmp = $pdf['tmp_name'];
+        $pdfname = $pdf['name'];
+        $file_ext = strtolower(pathinfo($pdfname, PATHINFO_EXTENSION));
+
+        $expensions = array("pdf");
+
+        if(in_array($file_ext, $expensions) == false){
+            return false;
+        }
+
+        if($file_size > 5242880){
+            return false;
+        }
+
+        if(move_uploaded_file($file_tmp, ROOT . "www" . DIRECTORY_SEPARATOR . "pdf" . DIRECTORY_SEPARATOR . $file_name)) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
     public function add_article($article, $id, $pdf) {
         $schvaleno = 0;
         $prumer = 0.0;
@@ -69,25 +95,7 @@ class ArticlesModel extends Model
             return false;
         }
 
-        $file_name = $pdf['name'];
-        $file_size = $pdf['size'];
-        $file_tmp = $pdf['tmp_name'];
-        $pdfname = $pdf['name'];
-        $file_ext = strtolower(pathinfo($pdfname, PATHINFO_EXTENSION));
-
-        $expensions = array("pdf");
-
-        if(in_array($file_ext, $expensions) == false){
-            $this->deletArticleCouseOfError($nazev, $autori);
-            return false;
-        }
-
-        if($file_size > 5242880){
-            $this->deletArticleCouseOfError($nazev, $autori);
-            return false;
-        }
-
-        if(move_uploaded_file($file_tmp, ROOT . "www" . DIRECTORY_SEPARATOR . "pdf" . DIRECTORY_SEPARATOR . $file_name)) {
+        if($this->uploadFile($pdf)) {
             return true;
         }
 
@@ -184,5 +192,19 @@ class ArticlesModel extends Model
         $q->bindValue(":srozum", $srozum);
 
         $q->execute();
+    }
+
+    public function getMyReviews($id) {
+        $q = $this->db->prepare("SELECT r.originalita, r.pravopis, r.srozumitelnost, r.tema, ((r.originalita + r.pravopis + r.srozumitelnost + r.tema) / 4.0) AS prumer,
+                            p.nazev, p.schvaleno FROM recenze r, prispevky p WHERE r.id_uzivatel = :id AND p.id = r.id_prispevek");
+        $q->bindValue(":id", $id);
+        $q->execute();
+        if($q->rowCount() > 0) {
+            return $q->fetchAll();
+        }
+
+        else {
+            return false;
+        }
     }
 }

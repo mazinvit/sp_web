@@ -17,7 +17,7 @@
                     <tr>
                         <td>{{ article.nazev }}</td>
                         <td>{{ article.autori }}</td>
-                        <td>{{ article.prumer_hodnoc }}</td>
+                        <td>{{ article.prumer_hodnoc|number_format(2, '.', ',') }}</td>
                         <td><a href="{{ makeURL('Admin', 'article_detail', '') }}{{ article.id }}">
                                 <span class="glyphicon glyphicon-cog article" aria-hidden="true"></span>
                             </a></td>
