@@ -25,24 +25,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-        function validateForm() {
-            var a=document.forms["Form"]["reg[login]"].value;
-            var b=document.forms["Form"]["reg[jmeno]"].value;
-            var c=document.forms["Form"]["reg[pass1]"].value;
-            var d=document.forms["Form"]["reg[pass2]"].value;
-            var e=document.forms["Form"]["reg[email]"].value;
-            if (a==null || a=="",b==null || b=="",c==null || c=="",d==null || d=="",e==null || e=="") {
-                document.getElementById('fill1').style.display="block";
-                return false;
-            }
-
-            if(c != d) {
-                document.getElementById('fill2').style.display="block";
-                return false;
-            }
-        }
-    </script>
+    <script src="../www/js/functions.js"></script>
 </head>
 
 <body>
@@ -82,7 +65,7 @@
                         {% if session.uzivatel.prava == 1 %}
                             <li><a href="{{ makeURL('Admin', 'administration') }}">Administrace</a></li>
                         {% elseif session.uzivatel.prava == 2 %}
-                            <li><a href="{{ makeURL('Reviewer', 'my_reviews') }}">Moje hodnocní</a></li>
+                            <li><a href="{{ makeURL('Reviewer', 'my_reviews') }}">Moje hodnocení</a></li>
                         {% else %}
                             <li><a href="{{ makeURL('Author', 'author_section') }}">Sekce pro autory</a></li>
                         {% endif %}

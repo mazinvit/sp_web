@@ -119,58 +119,11 @@ class ArticlesModel extends Model
         }
     }
 
-    public function getCountReviews($id) {
-        $q = $this->db->prepare("SELECT originalita FROM recenze WHERE id_prispevek = :id");
-        $q->bindValue(":id", $id);
-        $q->execute();
-
-        $arr = $q->fetchAll();
-
-        $ret = 0;
-
-        foreach($arr as $col) {
-            if($col['originalita'] > 0) {
-                $ret++;
-            }
-        }
-
-        return $ret;
-    }
-
     public function setAllowOrDeny($allow, $id) {
         $q = $this->db->prepare("UPDATE prispevky SET schvaleno = :schvaleno WHERE id = :id");
         $q->bindValue(":schvaleno", $allow);
         $q->bindValue(":id", $id);
         $q->execute();
-    }
-
-    public function getAllReviewers($id) {
-        $q = $this->db->prepare("SELECT r.*, u.jmeno, u.id, ((r.originalita + r.pravopis + r.srozumitelnost + r.tema) / 4.0) AS prumer
-                      FROM recenze r, uzivatele u WHERE r.id_prispevek = :id AND u.id = r.id_uzivatel");
-        $q->bindValue(":id", $id);
-        $q->execute();
-
-        if($q->rowCount() > 0) {
-            return $q->fetchAll();
-        }
-
-        else {
-            return false;
-        }
-    }
-
-    public function deleteReviewer($id) {
-        $q = $this->db->prepare("DELETE FROM recenze WHERE id_uzivatel = :id");
-        $q->bindValue(":id", $id);
-        $q->execute();
-    }
-
-    public function getPosibleReviewers($id) {
-        $q = $this->db->prepare("SELECT * FROM uzivatele WHERE prava = 2 AND id NOT IN (SELECT id_uzivatel FROM recenze WHERE id_prispevek = :id)");
-        $q->bindValue(":id", $id);
-        $q->execute();
-
-        return $q->fetchAll();
     }
 
     private function deletArticleCouseOfError($nazev, $autori) {
@@ -180,31 +133,21 @@ class ArticlesModel extends Model
         $q->execute();
     }
 
-    public function addReviewer($id_article, $id_reviewer) {
-        $q = $this->db->prepare("INSERT INTO recenze (id_uzivatel, id_prispevek, originalita, tema, pravopis, srozumitelnost) 
-                                    VALUES (:id_reviewer, :id_article, :orig, :tema, :pravopis, :srozum)");
-        $orig = $tema = $pravopis = $srozum = 0;
-        $q->bindValue(":id_reviewer", $id_reviewer);
-        $q->bindValue(":id_article", $id_article);
-        $q->bindValue(":orig", $orig);
-        $q->bindValue(":tema", $tema);
-        $q->bindValue(":pravopis", $pravopis);
-        $q->bindValue(":srozum", $srozum);
-
-        $q->execute();
-    }
-
-    public function getMyReviews($id) {
-        $q = $this->db->prepare("SELECT r.originalita, r.pravopis, r.srozumitelnost, r.tema, ((r.originalita + r.pravopis + r.srozumitelnost + r.tema) / 4.0) AS prumer,
-                            p.nazev, p.schvaleno FROM recenze r, prispevky p WHERE r.id_uzivatel = :id AND p.id = r.id_prispevek");
+    public function getPDF($id) {
+        $q = $this->db->prepare("SELECT pdf FROM prispevky WHERE id = :id");
         $q->bindValue(":id", $id);
         $q->execute();
-        if($q->rowCount() > 0) {
-            return $q->fetchAll();
-        }
 
-        else {
-            return false;
-        }
+        return $q->fetch();
+    }
+
+    public function deletArticle($id) {
+        $q = $this->db->prepare("DELETE FROM prispevky WHERE id = :id");
+        $q->bindValue(":id", $id);
+        $q->execute();
+        $pdf = $this->getPDF($id);
+        $file = ROOT . "www" . DIRECTORY_SEPARATOR . "pdf" . DIRECTORY_SEPARATOR . $pdf['pdf'];
+        $path = realpath($file) . DIRECTORY_SEPARATOR . $pdf['pdf'];
+        unlink($path);
     }
 }

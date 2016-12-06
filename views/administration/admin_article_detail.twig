@@ -53,16 +53,28 @@
             </tbody>
         </table>
     </div>
-    <div class="form-group col-md-4 col-md-offset-5 col-xs-12">
-        <form method="post" action="{{ makeURL('Admin', 'add_reviewer') }}">
-            <input type="hidden" name="id_article" value="{{ article.id }}">
-            <select class="form-control" name="id_reviewer">
-                {% for reviewer in posible_reviewers %}
-                    <option value="{{ reviewer.id }}">{{ reviewer.jmeno }}</option>
-                {% endfor %}
-            </select>
-            <br>
-            <button type="submit" class="form-control btn btn-success">Přidat recenzenta</button>
-        </form>
+    <div class="row">
+        <div class="form-group col-md-4 col-md-offset-4 col-xs-12">
+            <form method="post" action="{{ makeURL('Admin', 'add_reviewer') }}">
+                <input type="hidden" name="id_article" value="{{ article.id }}">
+                <select class="form-control" name="id_reviewer">
+                    {% for reviewer in posible_reviewers %}
+                        <option value="{{ reviewer.id }}">{{ reviewer.jmeno }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <button type="submit" class="form-control btn btn-success">Přidat recenzenta</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-3 col-xs-12">
+            <form method="post" action="{{ makeURL('Admin', 'delete_article') }}">
+                <input type="hidden" name="id_article" value="{{ article.id }}">
+                <button type="submit" class="form-control btn btn-danger">Smazat příspěvek</button>
+            </form>
+        </div>
     </div>
 {% endblock %}

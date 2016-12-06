@@ -8,16 +8,19 @@
 
 namespace Sp\Controlers;
 
+use Sp\Models\ReviewerModel;
 use Sp\Models\UserModel;
 use Sp\Models\ArticlesModel;
 
 require_once ROOT . "models" . DIRECTORY_SEPARATOR . "UserModel.php";
 require_once ROOT . "models" . DIRECTORY_SEPARATOR . "ArticlesModel.php";
+require_once ROOT . "models" . DIRECTORY_SEPARATOR . "ReviewerModel.php";
 
 class AdminController extends Controller
 {
     private $modelUser = null;
     private $modelArticles = null;
+    private $modelReviewer = null;
 
     public function administration() {
         if($this->modelUser == null) {
@@ -155,6 +158,10 @@ class AdminController extends Controller
             $this->modelUser = new UserModel();
         }
 
+        if($this->modelReviewer == null) {
+            $this->modelReviewer = new ReviewerModel();
+        }
+
         if($this->modelUser->isAdmin()) {
             $article = $this->modelArticles->getArticleById($id);
 
@@ -166,9 +173,9 @@ class AdminController extends Controller
                 $_SESSION['article_detail'] = $article['id'];
                 $template = $this->twig->loadTemplate('administration/admin_article_detail.twig');
                 $params['article'] = $article;
-                $params['reviews_count'] = $this->modelArticles->getCountReviews($id);
-                $params['reviewers'] = $this->modelArticles->getAllReviewers($id);
-                $params['posible_reviewers'] = $this->modelArticles->getPosibleReviewers($id);
+                $params['reviews_count'] = $this->modelReviewer->getCountReviews($id);
+                $params['reviewers'] = $this->modelReviewer->getAllReviewers($id);
+                $params['posible_reviewers'] = $this->modelReviewer->getPosibleReviewers($id);
                 echo $template->render($params);
             }
         }
@@ -206,8 +213,12 @@ class AdminController extends Controller
             $this->modelUser = new UserModel();
         }
 
+        if($this->modelReviewer == null) {
+            $this->modelReviewer = new ReviewerModel();
+        }
+
         if($this->modelUser->isAdmin()) {
-            $this->modelArticles->deleteReviewer($id);
+            $this->modelReviewer->deleteReviewer($id);
             $this->redirection('Admin', 'article_detail', $_SESSION['article_detail']);
         }
 
@@ -225,11 +236,34 @@ class AdminController extends Controller
             $this->modelUser = new UserModel();
         }
 
+        if($this->modelReviewer == null) {
+            $this->modelReviewer = new ReviewerModel();
+        }
+
         if($this->modelUser->isAdmin()) {
             if(!empty($_POST['id_reviewer'])) {
-                $this->modelArticles->addReviewer($_POST['id_article'], $_POST['id_reviewer']);
+                $this->modelReviewer->addReviewer($_POST['id_article'], $_POST['id_reviewer']);
             }
             $this->redirection('Admin', 'article_detail', $_SESSION['article_detail']);
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
+
+    public function delete_article() {
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelUser->isAdmin()) {
+            $this->modelArticles->deletArticle($_POST['id_article']);
+            $this->redirection('Admin', 'admin_article');
         }
 
         else {
