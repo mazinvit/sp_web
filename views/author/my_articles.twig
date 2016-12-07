@@ -1,7 +1,7 @@
 {% extends 'templates/template.twig' %}
-{% block title %}Moje příspěvky{% endblock %}
+{% block title %}Moje články{% endblock %}
 {% block content %}
-    <h2>Moje příspěvky</h2>
+    <h2>Moje články</h2>
     <div class="form-group col-md-10 col-md-offset-1 col-xs-12">
         <table class="table table-responsive table-striped reviews">
             <thead>
@@ -20,11 +20,11 @@
                     <td>{{ article.autori }}</td>
                     <td>{{ article.abstract|truncate(300, true) }}</td>
                     <td><a href="{{ makeURL('Home', 'download_pdf', '') }}{{ article.pdf }}">
-                            <span class="glyphicon glyphicon-download-alt article" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-download-alt article" aria-hidden="true"></span>
                     </a></td>
                     {% if article.schvaleno == 0 %}
                     <td><a href="#">
-                            <span class="glyphicon glyphicon-pencil article" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-pencil article" aria-hidden="true"></span>
                     </a></td>
                     {% else %}
                     <td>

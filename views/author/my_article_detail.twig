@@ -1,0 +1,18 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Upravit článek{% endblock %}
+{% block content %}
+    <h2>Upravit článek</h2>
+    <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
+        <form enctype="multipart/form-data" method="post" action="#">
+            <input type="text" class="form-control" placeholder="Název" name="article[nazev]"><br>
+            <input type="text" class="form-control" placeholder="Autoři" name="article[autori]"><br>
+            <textarea class="form-control" placeholder="Abstrakt" name="article[abstract]"></textarea><br>
+            <label class="btn btn-default btn-file">
+                PDF soubor článku<input type="file" name="pdf">
+            </label>
+            <br>
+            <input type="hidden" name="id" value="{{ session.uzivatel.id }}"><br>
+            <button type="submit" class="btn btn-success" >Přidat</button>
+        </form>
+    </div>
+{% endblock %}
