@@ -154,4 +154,34 @@ class AuthorController extends Controller
             $this->redirection();
         }
     }
+
+    public function update_article() {
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
+        if($this->modelUser->isAuthor()) {
+            if(!isset($_POST['article'])) {
+                $this->redirection('Author', 'my_articles');
+            }
+
+            if(!empty($_FILES['pdf']['name'])) {
+                $this->modelArticles->updateArticle($_POST['article'], $_FILES['pdf']);
+            }
+
+            else {
+                $this->modelArticles->updateArticle($_POST['article']);
+            }
+
+            $this->redirection('Author', 'my_article_detail', $_POST['article']['id']);
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
 }

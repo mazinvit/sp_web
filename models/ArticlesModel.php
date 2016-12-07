@@ -156,4 +156,25 @@ class ArticlesModel extends Model
 
         $this->deletePDF($pdf);
     }
+
+    public function updateArticle($article, $pdf = null) {
+        if($pdf == null) {
+            $newPdf = $article['pdf'];
+        }
+
+        else {
+            $newPdf = $pdf;
+            $this->deletePDF($article['pdf']);
+            $this->uploadFile($newPdf);
+        }
+
+        $q = $this->db->prepare("UPDATE prispevky SET nazev = :nazev, autori = :autori, abstract = :abstract, pdf = :pdf 
+                                  WHERE id = :id");
+        $q->bindValue(":nazev", htmlspecialchars(stripslashes($article['nazev']), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(":autori", htmlspecialchars(stripslashes($article['autori']), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(":abstract", htmlspecialchars(stripslashes($article['abstract']), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(":pdf", htmlspecialchars(stripslashes($newPdf['name']), ENT_QUOTES, 'UTF-8'));
+        $q->bindValue(":id", htmlspecialchars(stripslashes($article['id']), ENT_QUOTES, 'UTF-8'));
+        $q->execute();
+    }
 }

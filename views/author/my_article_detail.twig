@@ -3,7 +3,7 @@
 {% block content %}
     <h2>Upravit článek</h2>
     <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
-        <form enctype="multipart/form-data" method="post" action="#">
+        <form enctype="multipart/form-data" method="post" action="{{ makeURL('Author', 'update_article') }}">
             <input type="text" class="form-control" placeholder="Název" name="article[nazev]" value="{{ article.nazev }}"><br>
             <input type="text" class="form-control" placeholder="Autoři" name="article[autori]" value="{{ article.autori }}"><br>
             <textarea class="form-control" placeholder="Abstrakt" name="article[abstract]">{{ article.abstract }}</textarea><br>
