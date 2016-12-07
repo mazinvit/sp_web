@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afda5f0e-0814-466d-9145-6f48d970f7b8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/reviewer/edit_review.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/ReviewerController.php" afterPath="$PROJECT_DIR$/controllers/ReviewerController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/ReviewerModel.php" afterPath="$PROJECT_DIR$/models/ReviewerModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reviewer/edit_review.twig" afterPath="$PROJECT_DIR$/views/reviewer/edit_review.twig" />
     </list>
     <ignored path="sp_web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,21 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AuthorController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/AuthorController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3060">
-              <caret line="186" column="1" lean-forward="false" selection-start-line="186" selection-start-column="1" selection-end-line="186" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="template.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/templates/template.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="581">
-              <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
+            <state relative-caret-position="1224">
+              <caret line="72" column="66" lean-forward="false" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -64,8 +57,38 @@
       <file leaf-file-name="edit_review.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/reviewer/edit_review.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+            <state relative-caret-position="493">
+              <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReviewerModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/ReviewerModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="134" column="36" lean-forward="false" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="36" />
+              <folding>
+                <marker date="1481146130834" expanded="true" signature="224:280" ph="SELECT origi... recenze" />
+                <marker date="1481146130834" expanded="true" signature="621:824" ph="SELECT r.*, recenze" />
+                <marker date="1481146130834" expanded="true" signature="1099:1142" ph="DELETE FROM " />
+                <marker date="1481146130834" expanded="true" signature="1291:1403" ph="SELECT * FRO... uzivatele" />
+                <marker date="1481146130834" expanded="true" signature="1346:1402" ph="SELECT id_uz... recenze" />
+                <marker date="1481146130834" expanded="true" signature="1598:1796" ph="INSERT INTO recenze... " />
+                <marker date="1481146130834" expanded="true" signature="2225:2502" ph="SELECT r.ori... recenze" />
+                <marker date="1481146130834" expanded="true" signature="4843:4930" ph="SELECT * FRO... recenze" />
+                <marker date="1481146130834" expanded="true" signature="5275:5363" ph="SELECT origi... recenze" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReviewerController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/ReviewerController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -113,30 +136,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArticlesModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/ArticlesModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2958">
-              <caret line="179" column="1" lean-forward="false" selection-start-line="179" selection-start-column="1" selection-end-line="179" selection-end-column="1" />
-              <folding>
-                <element signature="e#6#87#0#PHP" expanded="true" />
-                <marker date="1481130841011" expanded="true" signature="669:677" ph="..." />
-                <marker date="1481130841011" expanded="true" signature="5463:5470" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="uvod.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/uvod.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -178,8 +177,6 @@
         <option value="$PROJECT_DIR$/controllers/Controller.php" />
         <option value="$PROJECT_DIR$/models/UserModel.php" />
         <option value="$PROJECT_DIR$/views/reviewer/my_reviews.twig" />
-        <option value="$PROJECT_DIR$/controllers/ReviewerController.php" />
-        <option value="$PROJECT_DIR$/models/ReviewerModel.php" />
         <option value="$PROJECT_DIR$/www/js/functions.js" />
         <option value="$PROJECT_DIR$/views/templates/edit_review.twig" />
         <option value="$PROJECT_DIR$/views/administration/admin_article_detail.twig" />
@@ -204,6 +201,9 @@
         <option value="$PROJECT_DIR$/controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/views/where.twig" />
         <option value="$PROJECT_DIR$/views/reviewer/review_detail.twig" />
+        <option value="$PROJECT_DIR$/models/ReviewerModel.php" />
+        <option value="$PROJECT_DIR$/controllers/ReviewerController.php" />
+        <option value="$PROJECT_DIR$/views/reviewer/edit_review.twig" />
       </list>
     </option>
   </component>
@@ -223,7 +223,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
+    <option name="x" value="-1" />
+    <option name="width" value="1921" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
@@ -241,7 +242,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -434,7 +435,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -545,19 +546,20 @@
       <workItem from="1481055441494" duration="4132000" />
       <workItem from="1481098655005" duration="9750000" />
       <workItem from="1481133239009" duration="469000" />
-      <workItem from="1481143123793" duration="360000" />
+      <workItem from="1481143123793" duration="1443000" />
+      <workItem from="1481145421211" duration="1963000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60569000" />
+    <option name="totallyTimeSpent" value="63615000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1040" extended-state="0" />
+    <frame x="-1" y="0" width="1921" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19139785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19344439" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -743,13 +745,6 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/85e28418-4bad-483c-8205-001ca3c51559/console.sql" />
-    <entry file="file://$PROJECT_DIR$/views/administration/user_administration.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="751">
@@ -793,28 +788,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/ReviewerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="89" column="107" lean-forward="false" selection-start-line="89" selection-start-column="107" selection-end-line="89" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/administration/admin_article.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="76" lean-forward="false" selection-start-line="4" selection-start-column="76" selection-end-line="4" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/ReviewerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="69" column="30" lean-forward="false" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
-          <folding>
-            <element signature="e#115#139#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -885,20 +862,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AuthorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3060">
-          <caret line="186" column="1" lean-forward="false" selection-start-line="186" selection-start-column="1" selection-end-line="186" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/ArticlesModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2958">
           <caret line="179" column="1" lean-forward="false" selection-start-line="179" selection-start-column="1" selection-end-line="179" selection-end-column="1" />
           <folding>
-            <element signature="e#6#87#0#PHP" expanded="true" />
+            <element signature="e#6#87#0#PHP" expanded="false" />
             <marker date="1481130841011" expanded="true" signature="669:677" ph="..." />
             <marker date="1481130841011" expanded="true" signature="5463:5470" ph="..." />
           </folding>
@@ -966,14 +935,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/templates/template.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
+        <state relative-caret-position="1224">
+          <caret line="72" column="66" lean-forward="false" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
           <folding />
         </state>
       </provider>
@@ -986,10 +954,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AuthorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="751">
+          <caret line="186" column="1" lean-forward="false" selection-start-line="186" selection-start-column="1" selection-end-line="186" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ReviewerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/ReviewerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="134" column="36" lean-forward="false" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="36" />
+          <folding>
+            <marker date="1481146130834" expanded="true" signature="224:280" ph="SELECT origi... recenze" />
+            <marker date="1481146130834" expanded="true" signature="621:824" ph="SELECT r.*, recenze" />
+            <marker date="1481146130834" expanded="true" signature="1099:1142" ph="DELETE FROM " />
+            <marker date="1481146130834" expanded="true" signature="1291:1403" ph="SELECT * FRO... uzivatele" />
+            <marker date="1481146130834" expanded="true" signature="1346:1402" ph="SELECT id_uz... recenze" />
+            <marker date="1481146130834" expanded="true" signature="1598:1796" ph="INSERT INTO recenze... " />
+            <marker date="1481146130834" expanded="true" signature="2225:2502" ph="SELECT r.ori... recenze" />
+            <marker date="1481146130834" expanded="true" signature="4843:4930" ph="SELECT * FRO... recenze" />
+            <marker date="1481146130834" expanded="true" signature="5275:5363" ph="SELECT origi... recenze" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/administration/user_administration.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/reviewer/edit_review.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        <state relative-caret-position="493">
+          <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
           <folding />
         </state>
       </provider>

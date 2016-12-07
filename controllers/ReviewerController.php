@@ -67,7 +67,10 @@ class ReviewerController extends Controller
             }
 
             else {
-                print_r($row);
+                $arr = $this->modelReviewer->getHtmlForTemplate($row);
+                $template = $this->twig->loadTemplate("reviewer/edit_review.twig");
+                $params['arr'] = $arr;
+                echo $template->render($params);
             }
         }
 

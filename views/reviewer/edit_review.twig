@@ -1,8 +1,36 @@
 {% extends 'templates/template.twig' %}
-{% block title %}Moje hodnocení{% endblock %}
+{% block title %}Úprava recenze{% endblock %}
 {% block content %}
     <h2>Úprava recenze</h2>
-    <div class="form-group col-md-8 col-md-offset-2 col-xs-12">
-
+    <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
+        <p>Přidělta danému kritériu známku jako ve škole.</p>
+        <form method="post" action="#">
+            <strong>Originalita:</strong>
+            <br>
+            <select name="review[originalita]" class="form-control">
+                {{ arr.originalita|raw }}
+            </select>
+            <br>
+            <strong>Téma:</strong>
+            <br>
+            <select name="review[tema]" class="form-control">
+                {{ arr.tema|raw }}
+            </select>
+            <br>
+            <strong>Pravopis:</strong>
+            <br>
+            <select name="review[pravopis]" class="form-control">
+                {{ arr.pravopis|raw }}
+            </select>
+            <br>
+            <strong>Srozumitelnost:</strong>
+            <br>
+            <select name="review[srozumitelnost]" class="form-control">
+                {{ arr.srozumitelnost|raw }}
+            </select>
+            <br>
+            <br>
+            <button type="submit" class="form-control btn btn-success">Upravit</button>
+        </form>
     </div>
 {% endblock %}

@@ -86,6 +86,90 @@ class ReviewerModel extends Model
         }
     }
 
+    public function getHtmlForTemplate($review) {
+        if($review['originalita'] == 0) {
+            $val = 1;
+        }
+
+        else {
+            $val = $review['originalita'];
+        }
+
+        $originalita = "";
+
+        for ($i = 1; $i <= 5; $i++) {
+            if($i == $val) {
+                $originalita .= '<option value="'.$i.'" selected="selected">' . $i . '</option>';
+            }
+
+            else {
+                $originalita .= '<option value="'.$i.'">' . $i . '</option>';
+            }
+        }
+
+        if($review['tema'] == 0) {
+            $val = 1;
+        }
+
+        else {
+            $val = $review['tema'];
+        }
+
+        $tema = "";
+
+        for ($i = 1; $i <= 5; $i++) {
+            if($i == $val) {
+                $tema .= '<option value="'.$i.'" selected="selected">' . $i . '</option>';
+            }
+
+            else {
+                $tema .= '<option value="'.$i.'">' . $i . '</option>';
+            }
+        }
+
+        if($review['pravopis'] == 0) {
+            $val = 1;
+        }
+
+        else {
+            $val = $review['pravopis'];
+        }
+
+        $pravopis = "";
+
+        for ($i = 1; $i <= 5; $i++) {
+            if($i == $val) {
+                $pravopis .= '<option value="'.$i.'" selected="selected">' . $i . '</option>';
+            }
+
+            else {
+                $pravopis .= '<option value="'.$i.'">' . $i . '</option>';
+            }
+        }
+
+        if($review['srozumitelnost'] == 0) {
+            $val = 1;
+        }
+
+        else {
+            $val = $review['srozumitelnost'];
+        }
+
+        $srozumitelnost = "";
+
+        for ($i = 1; $i <= 5; $i++) {
+            if($i == $val) {
+                $srozumitelnost .= '<option value="'.$i.'" selected="selected">' . $i . '</option>';
+            }
+
+            else {
+                $srozumitelnost .= '<option value="'.$i.'">' . $i . '</option>';
+            }
+        }
+
+        return array("originalita" => $originalita, "tema" => $tema, "pravopis" => $pravopis, "srozumitelnost" => $srozumitelnost);
+    }
+
     public function getReview($id_reviewer, $id_article) {
         $q = $this->db->prepare("SELECT * FROM recenze WHERE id_prispevek = :id_prispevek AND id_uzivatel = :id_uzivatel");
         $q->bindValue(":id_prispevek", $id_article);
@@ -99,5 +183,11 @@ class ReviewerModel extends Model
         else {
             return null;
         }
+    }
+
+    public function getArticleReviews($id) {
+        $q = $this->db->prepare("SELECT originalita, pravopis, srozumitelnost, tema FROM recenze WHERE id_prispevek = :id");
+        $q->bindValue(":id", $id);
+        $q->execute();
     }
 }
