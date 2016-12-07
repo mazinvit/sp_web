@@ -2,7 +2,7 @@
 {% block title %}Administrace příspěvků{% endblock %}
 {% block content %}
     <h2>Administrace příspěvků</h2>
-    <div class="form-group col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12">
+    <div class="form-group col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
         <table class="table table-responsive table-striped admin_article">
             <thead>
                 <tr>
@@ -10,6 +10,7 @@
                     <td><strong>Autoři</strong></td>
                     <td><strong>Průměr. hodnocení</strong></td>
                     <td><strong>Upravit</strong></td>
+                    <td><strong>Smazat</strong></td>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +21,10 @@
                         <td>{{ article.prumer_hodnoc|number_format(2, '.', ',') }}</td>
                         <td><a href="{{ makeURL('Admin', 'article_detail', '') }}{{ article.id }}">
                                 <span class="glyphicon glyphicon-cog article" aria-hidden="true"></span>
-                            </a></td>
+                        </a></td>
+                        <td><a href="{{ makeURL('Admin', 'delete_article', '') }}{{ article.id }}">
+                                <span class="glyphicon glyphicon-remove article" aria-hidden="true"></span>
+                        </a></td>
                     </tr>
                 {% endfor %}
             </tbody>

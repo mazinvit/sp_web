@@ -67,14 +67,4 @@
             </form>
         </div>
     </div>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-md-3 col-xs-12">
-            <form method="post" action="{{ makeURL('Admin', 'delete_article') }}">
-                <input type="hidden" name="id_article" value="{{ article.id }}">
-                <button type="submit" class="form-control btn btn-danger">Smazat příspěvek</button>
-            </form>
-        </div>
-    </div>
 {% endblock %}

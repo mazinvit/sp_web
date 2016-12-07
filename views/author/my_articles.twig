@@ -1,0 +1,39 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Moje příspěvky{% endblock %}
+{% block content %}
+    <h2>Moje příspěvky</h2>
+    <div class="form-group col-md-10 col-md-offset-1 col-xs-12">
+        <table class="table table-responsive table-striped reviews">
+            <thead>
+                <tr>
+                    <td><strong>Název článku</strong></td>
+                    <td><strong>Autoři</strong></td>
+                    <td><strong>Abstratkt</strong></td>
+                    <td><strong>PDF</strong></td>
+                    <td><strong>Upravit</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.nazev }}</td>
+                    <td>{{ article.autori }}</td>
+                    <td>{{ article.abstract|truncate(300, true) }}</td>
+                    <td><a href="{{ makeURL('Home', 'download_pdf', '') }}{{ article.pdf }}">
+                            <span class="glyphicon glyphicon-download-alt article" aria-hidden="true"></span>
+                    </a></td>
+                    {% if article.schvaleno == 0 %}
+                    <td><a href="#">
+                            <span class="glyphicon glyphicon-pencil article" aria-hidden="true"></span>
+                    </a></td>
+                    {% else %}
+                    <td>
+                        <span class="glyphicon glyphicon-pencil article" aria-hidden="true"></span>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

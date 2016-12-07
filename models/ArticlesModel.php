@@ -33,8 +33,7 @@ class ArticlesModel extends Model
     }
 
     public function getMyArticles() {
-        $q = $this->db->prepare("SELECT p.*, SUM(r.originalita + r.tema + r.pravopis + r.srozumitelnost) / (COUNT(*) * 4) as hodnoceni
-                          FROM prispevky p, recenze r WHERE p.id_uzivatel = :id AND p.id = r.id_prispevek");
+        $q = $this->db->prepare("SELECT * FROM prispevky WHERE id_uzivatel = :id");
         $q->bindValue(":id", $_SESSION['uzivatel']['id']);
         $q->execute();
 
@@ -141,13 +140,20 @@ class ArticlesModel extends Model
         return $q->fetch();
     }
 
+    private function deletePDF($pdf) {
+        $file = ROOT . "www" . DIRECTORY_SEPARATOR . "pdf" . DIRECTORY_SEPARATOR . $pdf['pdf'];
+
+        $path = realpath($file);
+
+        unlink($path);
+    }
+
     public function deletArticle($id) {
         $q = $this->db->prepare("DELETE FROM prispevky WHERE id = :id");
         $q->bindValue(":id", $id);
-        $q->execute();
         $pdf = $this->getPDF($id);
-        $file = ROOT . "www" . DIRECTORY_SEPARATOR . "pdf" . DIRECTORY_SEPARATOR . $pdf['pdf'];
-        $path = realpath($file) . DIRECTORY_SEPARATOR . $pdf['pdf'];
-        unlink($path);
+        $q->execute();
+
+        $this->deletePDF($pdf);
     }
 }

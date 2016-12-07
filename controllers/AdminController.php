@@ -252,7 +252,7 @@ class AdminController extends Controller
         }
     }
 
-    public function delete_article() {
+    public function delete_article($id) {
         if($this->modelArticles == null) {
             $this->modelArticles = new ArticlesModel();
         }
@@ -262,7 +262,7 @@ class AdminController extends Controller
         }
 
         if($this->modelUser->isAdmin()) {
-            $this->modelArticles->deletArticle($_POST['id_article']);
+            $this->modelArticles->deletArticle($id);
             $this->redirection('Admin', 'admin_article');
         }
 
