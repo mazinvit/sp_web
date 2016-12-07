@@ -19,6 +19,7 @@ class UserController extends Controller
     public function signout() {
         $_SESSION['uzivatel'] = array();
         unset($_SESSION['uzivatel']);
+        session_destroy();
         $this->redirection();
     }
 
