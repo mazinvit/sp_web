@@ -54,4 +54,8 @@ class HomeController extends Controller
             $this->redirection('Error', 'error404');
         }
     }
+
+    public function where() {
+        echo $this->twig->render("where.twig");
+    }
 }

@@ -26,4 +26,12 @@ class Model
         ];
         $this->db = new PDO($dsn, DB_USER, DB_PASS, $opt);
     }
+
+    /**
+     * Model destructor.
+     */
+    public function __destruct()
+    {
+        unset($this->db);
+    }
 }
