@@ -28,7 +28,7 @@ class HomeController extends Controller
         $arr = $this->modelArticle->getAllArticlesForHome();
 
         if($arr == null) {
-            $this->redirection();
+            $this->redirection('Error', 'no_articles');
         }
 
         else {

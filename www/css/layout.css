@@ -51,3 +51,7 @@ table.admin_article {
 table.reviews {
     text-align: center;
 }
+
+textarea {
+    min-height: 100pt;
+}

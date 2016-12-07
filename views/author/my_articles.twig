@@ -23,7 +23,7 @@
                         <span class="glyphicon glyphicon-download-alt article" aria-hidden="true"></span>
                     </a></td>
                     {% if article.schvaleno == 0 %}
-                    <td><a href="#">
+                    <td><a href="{{ makeURL('Author', 'my_article_detail', '') }}{{ article.id }}">
                         <span class="glyphicon glyphicon-pencil article" aria-hidden="true"></span>
                     </a></td>
                     {% else %}

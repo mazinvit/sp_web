@@ -127,4 +127,31 @@ class AuthorController extends Controller
             $this->redirection();
         }
     }
+
+    public function my_article_detail($id) {
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
+        if($this->modelUser->isAuthor()) {
+            $article = $this->modelArticles->getArticleById($id);
+            if($article == null) {
+                $this->redirection('Author', 'my_articles');
+            }
+
+            else {
+                $template = $this->twig->loadTemplate("author/my_article_detail.twig");
+                $params['article'] = $article;
+                echo $template->render($params);
+            }
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
 }
