@@ -177,4 +177,12 @@ class ArticlesModel extends Model
         $q->bindValue(":id", htmlspecialchars(stripslashes($article['id']), ENT_QUOTES, 'UTF-8'));
         $q->execute();
     }
+
+    public function updateArticleScore($id, $score) {
+        $q = $this->db->prepare("UPDATE prispevky SET prumer_hodnoc = :score WHERE id = :id");
+
+        $q->bindValue(":score", $score);
+        $q->bindValue(":id", $id);
+        $q->execute();
+    }
 }

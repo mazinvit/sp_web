@@ -4,7 +4,7 @@
     <h2>Úprava recenze</h2>
     <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
         <p>Přidělta danému kritériu známku jako ve škole.</p>
-        <form method="post" action="#">
+        <form method="post" action="{{ makeURL('Reviewer', 'update_review') }}">
             <strong>Originalita:</strong>
             <br>
             <select name="review[originalita]" class="form-control">
@@ -28,6 +28,7 @@
             <select name="review[srozumitelnost]" class="form-control">
                 {{ arr.srozumitelnost|raw }}
             </select>
+            <input type="hidden" value="{{ id }}" name="id">
             <br>
             <br>
             <button type="submit" class="form-control btn btn-success">Upravit</button>

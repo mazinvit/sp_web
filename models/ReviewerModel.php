@@ -189,5 +189,44 @@ class ReviewerModel extends Model
         $q = $this->db->prepare("SELECT originalita, pravopis, srozumitelnost, tema FROM recenze WHERE id_prispevek = :id");
         $q->bindValue(":id", $id);
         $q->execute();
+
+        return $q->fetchAll();
+    }
+
+    public function updateReviewDB($review, $id) {
+        $q = $this->db->prepare("UPDATE recenze SET originalita = :originalita, tema = :tema, pravopis = :pravopis, srozumitelnost = :srozumitelnost 
+                                    WHERE id_prispevek = :id AND id_uzivatel = :id_u");
+        $q->bindValue(":originalita", $review['originalita']);
+        $q->bindValue(":tema", $review['tema']);
+        $q->bindValue(":pravopis", $review['pravopis']);
+        $q->bindValue(":srozumitelnost", $review['srozumitelnost']);
+        $q->bindValue(":id", $id);
+        $q->bindValue("id_u", $_SESSION['uzivatel']['id']);
+        $q->execute();
+    }
+
+    public function updateReview($review, $id) {
+        $this->updateReviewDB($review, $id);
+    }
+
+    public function getScore($id) {
+        $reviews = $this->getArticleReviews($id);
+
+        print_r($reviews);
+
+        $score = 0;
+        $count = 0;
+
+        for($i = 0; $i < count($reviews); $i++) {
+            $score += $reviews[$i]['originalita'];
+            $score += $reviews[$i]['tema'];
+            $score += $reviews[$i]['pravopis'];
+            $score += $reviews[$i]['srozumitelnost'];
+            $count++;
+        }
+
+        $finalScore = $score / (double)($count * 4);
+
+        return $finalScore;
     }
 }

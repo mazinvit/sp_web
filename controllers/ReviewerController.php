@@ -23,10 +23,6 @@ class ReviewerController extends Controller
     private $modelReviewer = null;
 
     public function my_reviews() {
-        if($this->modelArticles == null) {
-            $this->modelArticles = new ArticlesModel();
-        }
-
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
         }
@@ -70,7 +66,42 @@ class ReviewerController extends Controller
                 $arr = $this->modelReviewer->getHtmlForTemplate($row);
                 $template = $this->twig->loadTemplate("reviewer/edit_review.twig");
                 $params['arr'] = $arr;
+                $params['id'] = $id;
                 echo $template->render($params);
+            }
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
+
+    public function update_review() {
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelReviewer == null) {
+            $this->modelReviewer = new ReviewerModel();
+        }
+
+        if($this->modelUser->isReviewer()) {
+            $review = $_POST['review'];
+            $id = $_POST['id'];
+            if (empty($review) || empty($id)) {
+                $this->redirection('Reviewer', 'my_reviews');
+            }
+
+            else {
+                $this->modelReviewer->updateReview($review, $id);
+                $score = $this->modelReviewer->getScore($id);
+                $this->modelArticles->updateArticleScore($id, $score);
+
+                $this->redirection('Reviewer', 'my_reviews');
             }
         }
 

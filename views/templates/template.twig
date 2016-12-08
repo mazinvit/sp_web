@@ -40,7 +40,6 @@
 
 <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -51,7 +50,6 @@
             <a class="navbar-brand" href="{{ makeURL('Home', 'index') }}">Security Conference 2017</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{ makeURL('Home', 'index') }}">Úvod</a></li>
@@ -79,11 +77,10 @@
                     <li><a href="{{ makeURL('User', 'register_page') }}">Registrovat</a></li>
                 {% endif %}
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
         {% block content %}{% endblock %}
@@ -94,9 +91,9 @@
     <hr>
 
     <footer>
-        <p>&copy; 2016 Company, Inc.</p>
+        <p>&copy; 2016 Vít Mazín</p>
     </footer>
-</div> <!-- /container -->
+</div>
 
 
 <!-- Bootstrap core JavaScript
