@@ -101,7 +101,7 @@ class UserModel extends Model
         $q->execute();
 
         if($q->rowCount() != 0) {
-            return $q->fetchAll();
+            return $q->fetch();
         }
 
         else {
@@ -129,16 +129,17 @@ class UserModel extends Model
     }
 
     public function deleteUser($id) {
+        $user = $this->selectUserByID($id);
         $q = $this->db->prepare("DELETE FROM `uzivatele` WHERE `id` = :id");
         $q->bindValue(':id', htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
-        $ret = $q->execute();
+        $q->execute();
 
-        if($ret == 0) {
-            return false;
+        if($user['prava'] == 2) {
+            return true;
         }
 
         else {
-            return true;
+            return false;
         }
     }
 
@@ -171,19 +172,29 @@ class UserModel extends Model
         }
     }
 
-    public function isReviewer() {
-        if(isset($_SESSION['uzivatel'])) {
-            if($_SESSION['uzivatel']['prava'] == 2) {
+    public function isReviewer($id = null) {
+        if($id == null) {
+            if (isset($_SESSION['uzivatel'])) {
+                if ($_SESSION['uzivatel']['prava'] == 2) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        else {
+            $user = $this->selectUserByID($id);
+
+            if($user['prava'] == 2) {
                 return true;
             }
 
             else {
                 return false;
             }
-        }
-
-        else {
-            return false;
         }
     }
 

@@ -44,9 +44,10 @@ class ReviewerModel extends Model
         }
     }
 
-    public function deleteReviewer($id) {
-        $q = $this->db->prepare("DELETE FROM recenze WHERE id_uzivatel = :id");
-        $q->bindValue(":id", $id);
+    public function deleteReviewer($id_article, $id_reviewer) {
+        $q = $this->db->prepare("DELETE FROM recenze WHERE id_uzivatel = :id_uzivatel AND id_prispevek = :id_prispevek");
+        $q->bindValue(":id_uzivatel", $id_reviewer);
+        $q->bindValue(":id_prispevek", $id_article);
         $q->execute();
     }
 
@@ -212,8 +213,6 @@ class ReviewerModel extends Model
     public function getScore($id) {
         $reviews = $this->getArticleReviews($id);
 
-        print_r($reviews);
-
         $score = 0;
         $count = 0;
 
@@ -228,5 +227,12 @@ class ReviewerModel extends Model
         $finalScore = $score / (double)($count * 4);
 
         return $finalScore;
+    }
+
+    public function getReviewedArticles($id) {
+        $q = $this->db->prepare("SELECT p.id FROM prispevky p, recenze r WHERE r.id_uzivatel = :id");
+        $q->bindValue(":id", $id);
+        $q->execute();
+        return $q->fetchAll();
     }
 }

@@ -50,7 +50,13 @@
                     <td>{{ reviewer.pravopis }}</td>
                     <td>{{ reviewer.srozumitelnost }}</td>
                     <td>{{ reviewer.prumer|number_format(2, '.', ',') }}</td>
-                    <td><a href="{{ makeURL('Admin', 'delete_reviewer', '') }}{{ reviewer.id }}"><span class="glyphicon glyphicon-remove article" aria-hidden="true"></span></a></td>
+                    <td>
+                        <form method="post" action="{{ makeURL('Admin', 'delete_reviewer') }}">
+                            <input type="hidden" name="id_article" value="{{ article.id }}">
+                            <input type="hidden" name="id_reviewer" value="{{ reviewer.id }}">
+                            <a href="#" onclick="$(this).closest('form').submit()"><span class="glyphicon glyphicon-remove article" aria-hidden="true"></span></a>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
