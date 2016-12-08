@@ -16,12 +16,31 @@ require_once ROOT . "models" . DIRECTORY_SEPARATOR . "UserModel.php";
 require_once ROOT . "models" . DIRECTORY_SEPARATOR . "ArticlesModel.php";
 require_once ROOT . "models" . DIRECTORY_SEPARATOR . "ReviewerModel.php";
 
+/**
+ * Class ReviewerController
+ * @package Sp\Controlers
+ * Třída slouží jako controller pro recenzety.
+ */
 class ReviewerController extends Controller
 {
+    /**
+     * @var null instance UserModel
+     */
     private $modelUser = null;
+
+    /**
+     * @var null instance ArticleModel
+     */
     private $modelArticles = null;
+
+    /**
+     * @var null instance ReviewerModel
+     */
     private $modelReviewer = null;
 
+    /**
+     * Metoda zavolá vykreslení recenzí uživatele.
+     */
     public function my_reviews() {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
@@ -43,6 +62,11 @@ class ReviewerController extends Controller
         }
     }
 
+    /**
+     * Metoda vykreslí stránku pro editaci dané recenze.
+     *
+     * @param $id
+     */
     public function edit_review($id) {
         if($this->modelArticles == null) {
             $this->modelArticles = new ArticlesModel();
@@ -76,6 +100,10 @@ class ReviewerController extends Controller
         }
     }
 
+    /**
+     * Metoda zavolá upravení dané recenze a přesměruje uživatele zpět
+     * na formulář pro úpravu recenze.
+     */
     public function update_review() {
         if($this->modelArticles == null) {
             $this->modelArticles = new ArticlesModel();

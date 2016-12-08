@@ -14,11 +14,25 @@ use Sp\Models\ArticlesModel;
 require_once ROOT . "models" . DIRECTORY_SEPARATOR . "ArticlesModel.php";
 require_once ROOT . "models" . DIRECTORY_SEPARATOR . "UserModel.php";
 
+/**
+ * Class AuthorController
+ * @package Sp\Controlers
+ * Třída slouží jako controller pro autory článků.
+ */
 class AuthorController extends Controller
 {
+    /**
+     * @var null instance ArticleModel
+     */
     private $modelArticles = null;
+    /**
+     * @var null instance UserModel
+     */
     private $modelUser = null;
 
+    /**
+     * Metoda vykreslí sekci pro autory.
+     */
     public function author_section() {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
@@ -33,6 +47,9 @@ class AuthorController extends Controller
         }
     }
 
+    /**
+     * Metoda zavolá vykreslení stránky s formulářem pro přidání článku.
+     */
     public function write_article() {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
@@ -64,6 +81,10 @@ class AuthorController extends Controller
         }
     }
 
+    /**
+     * Metoda zavolá přidání článku. Poté zavolá přesměrování zpět na formulář,
+     * kde se zobrazí, zda byl článek přidán nebo ne.
+     */
     public function add_article() {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
@@ -101,6 +122,10 @@ class AuthorController extends Controller
         }
     }
 
+    /**
+     * Zavolá vybrání všech článků daného uživatele a poté zavolá vykreslení
+     * přehledu všech jeho článků. Šabloně předá vybrané články jako parametr.
+     */
     public function my_articles() {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
@@ -128,6 +153,11 @@ class AuthorController extends Controller
         }
     }
 
+    /**
+     * Zavolá vykreslení detailu článku pro úpravu.
+     *
+     * @param $id - id článku
+     */
     public function my_article_detail($id) {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
@@ -155,6 +185,9 @@ class AuthorController extends Controller
         }
     }
 
+    /**
+     * Metoda zavolá upravení daného článku.
+     */
     public function update_article() {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();

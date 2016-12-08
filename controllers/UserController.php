@@ -12,10 +12,21 @@ use Sp\Models\UserModel;
 
 require_once ROOT . "models" . DIRECTORY_SEPARATOR . "UserModel.php";
 
+/**
+ * Class UserController
+ * @package Sp\Controlers
+ * Třída slouží jako controller pro uživatele.
+ */
 class UserController extends Controller
 {
+    /**
+     * @var null instance UserModel
+     */
     private $modelUser = null;
 
+    /**
+     * Odhlášení
+     */
     public function signout() {
         $_SESSION['uzivatel'] = array();
         unset($_SESSION['uzivatel']);
@@ -23,10 +34,17 @@ class UserController extends Controller
         $this->redirection();
     }
 
+    /**
+     * Volání vykreslení stránky pro příhlášení.
+     */
     public function login_page() {
         echo $this->twig->render('login_page.twig');
     }
 
+    /**
+     * Metoda umožňuje přihlášení uživatele. Podle toho,
+     * zda se přihlášení povedlo ho přesměruje.
+     */
     public function signin() {
 
         if(isset($_POST['uzivatel'])) {
@@ -46,7 +64,7 @@ class UserController extends Controller
             }
 
             else {
-                $this->redirection("User", "wrongsign");
+                $this->redirection("Error", "wrongsign");
             }
         }
 
@@ -55,6 +73,9 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Volání vykreslení stránky pro registraci.
+     */
     public function register_page() {
         $template = $this->twig->loadTemplate('register_page.twig');
         if(isset($_SESSION['alert'])) {
@@ -76,6 +97,10 @@ class UserController extends Controller
         echo $template->render($params);
     }
 
+    /**
+     * Metoda umožňuje registraci uživatele. Podle toho,
+     * zda se registrace povedla ho přesměruje.
+     */
     public function register() {
         if(isset($_POST['reg'])) {
             if($this->modelUser == null) {
@@ -98,9 +123,5 @@ class UserController extends Controller
         else {
             $this->redirection("User", "errorregister");
         }
-    }
-
-    public function wrongsign() {
-        echo $this->twig->render('wrongsign.twig');
     }
 }

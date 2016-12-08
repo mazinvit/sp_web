@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afda5f0e-0814-466d-9145-6f48d970f7b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/AdminController.php" afterPath="$PROJECT_DIR$/controllers/AdminController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/ReviewerModel.php" afterPath="$PROJECT_DIR$/models/ReviewerModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/UserModel.php" afterPath="$PROJECT_DIR$/models/UserModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/administration/admin_article_detail.twig" afterPath="$PROJECT_DIR$/views/administration/admin_article_detail.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/AuthorController.php" afterPath="$PROJECT_DIR$/controllers/AuthorController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/Controller.php" afterPath="$PROJECT_DIR$/controllers/Controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/ErrorController.php" afterPath="$PROJECT_DIR$/controllers/ErrorController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/HomeController.php" afterPath="$PROJECT_DIR$/controllers/HomeController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/ReviewerController.php" afterPath="$PROJECT_DIR$/controllers/ReviewerController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/UserController.php" afterPath="$PROJECT_DIR$/controllers/UserController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/ArticlesModel.php" afterPath="$PROJECT_DIR$/models/ArticlesModel.php" />
     </list>
     <ignored path="sp_web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,7 +46,18 @@
     <favorites_list name="sp_web" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-269">
+              <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -73,7 +86,6 @@
         <option value="$PROJECT_DIR$/views/author/write_article.twig" />
         <option value="$PROJECT_DIR$/www/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/views/administration/administration.twig" />
-        <option value="$PROJECT_DIR$/controllers/Controller.php" />
         <option value="$PROJECT_DIR$/www/js/functions.js" />
         <option value="$PROJECT_DIR$/views/templates/edit_review.twig" />
         <option value="$PROJECT_DIR$/views/administration/admin_article.twig" />
@@ -81,28 +93,29 @@
         <option value="$PROJECT_DIR$/views/author/author.twig" />
         <option value="$PROJECT_DIR$/www/css/layout.css" />
         <option value="$PROJECT_DIR$/views/error/no_articles.twig" />
-        <option value="$PROJECT_DIR$/controllers/ErrorController.php" />
         <option value="$PROJECT_DIR$/views/no_articles.twig" />
         <option value="$PROJECT_DIR$/views/author/my_article_detail.twig" />
-        <option value="$PROJECT_DIR$/controllers/AuthorController.php" />
-        <option value="$PROJECT_DIR$/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/config/config.php" />
         <option value="$PROJECT_DIR$/views/uvod.twig" />
         <option value="$PROJECT_DIR$/models/Model.php" />
         <option value="$PROJECT_DIR$/views/templates/where.twig" />
-        <option value="$PROJECT_DIR$/controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/views/where.twig" />
         <option value="$PROJECT_DIR$/views/reviewer/review_detail.twig" />
         <option value="$PROJECT_DIR$/views/reviewer/edit_review.twig" />
         <option value="$PROJECT_DIR$/views/reviewer/my_reviews.twig" />
-        <option value="$PROJECT_DIR$/controllers/ReviewerController.php" />
         <option value="$PROJECT_DIR$/views/articles.twig" />
         <option value="$PROJECT_DIR$/views/templates/template.twig" />
-        <option value="$PROJECT_DIR$/models/ArticlesModel.php" />
         <option value="$PROJECT_DIR$/models/UserModel.php" />
         <option value="$PROJECT_DIR$/views/administration/admin_article_detail.twig" />
         <option value="$PROJECT_DIR$/models/ReviewerModel.php" />
         <option value="$PROJECT_DIR$/controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/models/ArticlesModel.php" />
+        <option value="$PROJECT_DIR$/controllers/AuthorController.php" />
+        <option value="$PROJECT_DIR$/controllers/Controller.php" />
+        <option value="$PROJECT_DIR$/controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/controllers/ReviewerController.php" />
+        <option value="$PROJECT_DIR$/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/controllers/ErrorController.php" />
       </list>
     </option>
   </component>
@@ -447,19 +460,19 @@
       <workItem from="1481133239009" duration="469000" />
       <workItem from="1481143123793" duration="1443000" />
       <workItem from="1481145421211" duration="1993000" />
-      <workItem from="1481198286459" duration="7848000" />
+      <workItem from="1481198286459" duration="9633000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71493000" />
+    <option name="totallyTimeSpent" value="73278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1921" height="1040" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19559376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19559376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -546,7 +559,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1481130841009" expanded="true" signature="1383:1388" ph="..." />
+            <element signature="e#7#88#0#PHP" expanded="true" />
+            <marker date="1481207494294" expanded="true" signature="2001:2006" ph="..." />
           </folding>
         </state>
       </provider>
@@ -572,7 +586,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1481130841009" expanded="true" signature="1383:1388" ph="..." />
+            <element signature="e#7#88#0#PHP" expanded="true" />
+            <marker date="1481207494294" expanded="true" signature="2001:2006" ph="..." />
           </folding>
         </state>
       </provider>
@@ -638,14 +653,6 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/85e28418-4bad-483c-8205-001ca3c51559/console.sql" />
-    <entry file="file://$PROJECT_DIR$/controllers/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="45" column="1" lean-forward="false" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/administration/user_detail_administration.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -682,13 +689,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/templates/edit_review.twig" />
-    <entry file="file://$PROJECT_DIR$/views/author/write_article.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/author/author.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -707,14 +707,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/ErrorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,14 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/uvod.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -768,14 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AuthorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="186" column="1" lean-forward="false" selection-start-line="186" selection-start-column="1" selection-end-line="186" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -818,16 +794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="60" column="1" lean-forward="false" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
-          <folding>
-            <marker date="1481130841009" expanded="true" signature="1383:1388" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -856,35 +822,6 @@
             <marker date="1481204171376" expanded="true" signature="3136:3192" ph="UPDATE `uziv... " />
             <marker date="1481204171376" expanded="true" signature="3546:3586" ph="DELETE FROM " />
             <marker date="1481204171376" expanded="true" signature="3902:3948" ph="SELECT * FRO... uzivatele" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/ReviewerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="84" column="47" lean-forward="true" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/ArticlesModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="734">
-          <caret line="186" column="5" lean-forward="false" selection-start-line="186" selection-start-column="5" selection-end-line="186" selection-end-column="5" />
-          <folding>
-            <marker date="1481203844912" expanded="true" signature="227:270" ph="SELECT * FRO... prispevky" />
-            <marker date="1481203844912" expanded="true" signature="509:532" ph="SELECT * FRO... prispevky" />
-            <marker date="1481203844912" expanded="true" signature="669:677" ph="..." />
-            <marker date="1481203844912" expanded="true" signature="1749:1964" ph="INSERT INTO prispevky... " />
-            <marker date="1481203844912" expanded="true" signature="3047:3085" ph="SELECT * FRO... prispevky" />
-            <marker date="1481203844912" expanded="true" signature="3367:3425" ph="UPDATE prisp... " />
-            <marker date="1481203844912" expanded="true" signature="3637:3700" ph="DELETE FROM " />
-            <marker date="1481203844912" expanded="true" signature="3885:3925" ph="SELECT pdf F... prispevky" />
-            <marker date="1481203844912" expanded="true" signature="4296:4332" ph="DELETE FROM " />
-            <marker date="1481203844912" expanded="true" signature="4779:4916" ph="UPDATE prisp... " />
-            <marker date="1481203844912" expanded="true" signature="5463:5470" ph="..." />
-            <marker date="1481203844912" expanded="true" signature="5560:5618" ph="UPDATE prisp... " />
           </folding>
         </state>
       </provider>
@@ -921,13 +858,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AdminController.php">
+    <entry file="file://$PROJECT_DIR$/views/author/write_article.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="341" column="29" lean-forward="false" selection-start-line="341" selection-start-column="29" selection-end-line="341" selection-end-column="29" />
+        <state relative-caret-position="170">
+          <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AuthorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="50" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/ArticlesModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="162" column="79" lean-forward="true" selection-start-line="162" selection-start-column="79" selection-end-line="162" selection-end-column="102" />
+          <folding>
+            <marker date="1481206504463" expanded="true" signature="227:270" ph="SELECT * FRO... prispevky" />
+            <marker date="1481206504463" expanded="true" signature="509:532" ph="SELECT * FRO... prispevky" />
+            <marker date="1481206504463" expanded="true" signature="669:677" ph="..." />
+            <marker date="1481206504463" expanded="true" signature="1749:1964" ph="INSERT INTO prispevky... " />
+            <marker date="1481206504463" expanded="true" signature="2982:3020" ph="SELECT * FRO... prispevky" />
+            <marker date="1481206504463" expanded="true" signature="3302:3360" ph="UPDATE prisp... " />
+            <marker date="1481206504463" expanded="true" signature="3541:3581" ph="SELECT pdf F... prispevky" />
+            <marker date="1481206504463" expanded="true" signature="3952:3988" ph="DELETE FROM " />
+            <marker date="1481206504463" expanded="true" signature="4435:4572" ph="UPDATE prisp... " />
+            <marker date="1481206504463" expanded="true" signature="5119:5126" ph="..." />
+            <marker date="1481206504463" expanded="true" signature="5216:5274" ph="UPDATE prisp... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="63" column="36" lean-forward="true" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+          <folding>
+            <element signature="e#7#88#0#PHP" expanded="true" />
+            <marker date="1481207494294" expanded="true" signature="2001:2006" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="51" />
+          <folding>
+            <element signature="e#6#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ReviewerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ErrorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="72" lean-forward="false" selection-start-line="33" selection-start-column="72" selection-end-line="33" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-269">
+          <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>

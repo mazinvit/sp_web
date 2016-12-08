@@ -90,17 +90,14 @@ class ArticlesModel extends Model
         $q->bindValue(":schvaleno", $schvaleno);
         $q->bindValue(":prumer_hodnoc", $prumer);
 
-        if(!$q->execute()) {
-            return false;
-        }
-
         if($this->uploadFile($pdf)) {
-            return true;
-        }
+            if(!$q->execute()) {
+                return false;
+            }
 
-        else {
-            $this->deletArticleCouseOfError($nazev, $autori);
-            return false;
+            else {
+                return true;
+            }
         }
     }
 
@@ -122,13 +119,6 @@ class ArticlesModel extends Model
         $q = $this->db->prepare("UPDATE prispevky SET schvaleno = :schvaleno WHERE id = :id");
         $q->bindValue(":schvaleno", $allow);
         $q->bindValue(":id", $id);
-        $q->execute();
-    }
-
-    private function deletArticleCouseOfError($nazev, $autori) {
-        $q = $this->db->prepare("DELETE FROM prispevky WHERE nazev = :nazev AND autori = :autori");
-        $q->bindValue(":nazev", $nazev);
-        $q->bindValue(":autori", $autori);
         $q->execute();
     }
 
