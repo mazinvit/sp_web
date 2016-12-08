@@ -9,8 +9,17 @@
 namespace Sp\Models;
 
 
+/**
+ * Class ArticlesModel
+ * @package Sp\Models
+ * Třída slouží jako model pro články.
+ */
 class ArticlesModel extends Model
 {
+    /**
+     * Metoda vrátí všechny schválené články.
+     * @return array|null - schválené články
+     */
     public function getAllArticlesForHome() {
         $q = $this->db->prepare("SELECT * FROM prispevky WHERE schvaleno = 1");
 
@@ -24,6 +33,10 @@ class ArticlesModel extends Model
         }
     }
 
+    /**
+     * Metoda vrátí všechny články.
+     * @return array - všechny články
+     */
     public function getAllArticles() {
         $q = $this->db->prepare("SELECT * FROM prispevky");
 
@@ -32,6 +45,11 @@ class ArticlesModel extends Model
         return $q->fetchAll();
     }
 
+    /**
+     * Metoda vrátí články daného autora.
+     *
+     * @return array|null - články
+     */
     public function getMyArticles() {
         $q = $this->db->prepare("SELECT * FROM prispevky WHERE id_uzivatel = :id");
         $q->bindValue(":id", $_SESSION['uzivatel']['id']);
@@ -46,6 +64,11 @@ class ArticlesModel extends Model
         }
     }
 
+    /**
+     * Metoda nahraje na web přílohu článku.
+     * @param $pdf - příloha
+     * @return bool - zda se upload zdařil
+     */
     private function uploadFile($pdf) {
         $file_name = $pdf['name'];
         $file_size = $pdf['size'];
@@ -72,6 +95,14 @@ class ArticlesModel extends Model
         }
     }
 
+    /**
+     * Metoda přidá článek
+     *
+     * @param $article - článek
+     * @param $id - id autora
+     * @param $pdf - příloha
+     * @return bool - zda se přídání zdařilo
+     */
     public function add_article($article, $id, $pdf) {
         $schvaleno = 0;
         $prumer = 0.0;
@@ -101,6 +132,12 @@ class ArticlesModel extends Model
         }
     }
 
+    /**
+     * Metoda vybere článek dle jeho id.
+     *
+     * @param $id - id článku
+     * @return mixed|null - článek
+     */
     public function getArticleById($id) {
         $q = $this->db->prepare("SELECT * FROM prispevky WHERE id = :id");
         $q->bindValue(":id", $id);
@@ -115,6 +152,12 @@ class ArticlesModel extends Model
         }
     }
 
+    /**
+     * Metoda nastaví článku, zda je scvhálený nebo ne.
+     *
+     * @param $allow - 1 - schváleno, -1 - zamítnuto
+     * @param $id - id článku
+     */
     public function setAllowOrDeny($allow, $id) {
         $q = $this->db->prepare("UPDATE prispevky SET schvaleno = :schvaleno WHERE id = :id");
         $q->bindValue(":schvaleno", $allow);
@@ -122,6 +165,12 @@ class ArticlesModel extends Model
         $q->execute();
     }
 
+    /**
+     * Metoda vrací jméno přílohy článku
+     *
+     * @param $id - id článku
+     * @return mixed - název přílohy
+     */
     public function getPDF($id) {
         $q = $this->db->prepare("SELECT pdf FROM prispevky WHERE id = :id");
         $q->bindValue(":id", $id);
@@ -130,6 +179,11 @@ class ArticlesModel extends Model
         return $q->fetch();
     }
 
+    /**
+     * Metoda maže přílohu
+     *
+     * @param $pdf - název přílohy
+     */
     private function deletePDF($pdf) {
         $file = ROOT . "www" . DIRECTORY_SEPARATOR . "pdf" . DIRECTORY_SEPARATOR . $pdf['pdf'];
 
@@ -138,6 +192,11 @@ class ArticlesModel extends Model
         unlink($path);
     }
 
+    /**
+     * Metoda maže daný článek.
+     *
+     * @param $id - id článku
+     */
     public function deletArticle($id) {
         $q = $this->db->prepare("DELETE FROM prispevky WHERE id = :id");
         $q->bindValue(":id", $id);
@@ -147,6 +206,12 @@ class ArticlesModel extends Model
         $this->deletePDF($pdf);
     }
 
+    /**
+     * Metoda upravuje daný článek
+     *
+     * @param $article - článek
+     * @param null $pdf - nová příloha
+     */
     public function updateArticle($article, $pdf = null) {
         if($pdf == null) {
             $newPdf = $article['pdf'];
@@ -168,6 +233,12 @@ class ArticlesModel extends Model
         $q->execute();
     }
 
+    /**
+     * Metoda pravuje průměrné hodnocení článku.
+     *
+     * @param $id - id článku
+     * @param $score - průměrné hodnocení
+     */
     public function updateArticleScore($id, $score) {
         $q = $this->db->prepare("UPDATE prispevky SET prumer_hodnoc = :score WHERE id = :id");
 

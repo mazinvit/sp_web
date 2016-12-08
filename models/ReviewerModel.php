@@ -9,8 +9,19 @@
 namespace Sp\Models;
 
 
+/**
+ * Class ReviewerModel
+ * @package Sp\Model
+ * Třída slouží jako model pro recenze.
+ */
 class ReviewerModel extends Model
 {
+    /**
+     * Vrací počet recenzí daného článku
+     *
+     * @param $id - id článku
+     * @return int - počet recenzí
+     */
     public function getCountReviews($id) {
         $q = $this->db->prepare("SELECT originalita FROM recenze WHERE id_prispevek = :id");
         $q->bindValue(":id", $id);
@@ -29,6 +40,12 @@ class ReviewerModel extends Model
         return $ret;
     }
 
+    /**
+     * Vrací recenze, jména a id recenzentů pro daný článek.
+     *
+     * @param $id - id článku
+     * @return array|bool - recenze, jména a id recenzentů
+     */
     public function getAllReviewers($id) {
         $q = $this->db->prepare("SELECT r.*, u.jmeno, u.id, ((r.originalita + r.pravopis + r.srozumitelnost + r.tema) / 4.0) AS prumer
                       FROM recenze r, uzivatele u WHERE r.id_prispevek = :id AND u.id = r.id_uzivatel");
@@ -44,6 +61,12 @@ class ReviewerModel extends Model
         }
     }
 
+    /**
+     * Odebere recenzentovy článek pro recenzování.
+     *
+     * @param $id_article - id článku
+     * @param $id_reviewer - id recenzenta
+     */
     public function deleteReviewer($id_article, $id_reviewer) {
         $q = $this->db->prepare("DELETE FROM recenze WHERE id_uzivatel = :id_uzivatel AND id_prispevek = :id_prispevek");
         $q->bindValue(":id_uzivatel", $id_reviewer);
@@ -51,6 +74,12 @@ class ReviewerModel extends Model
         $q->execute();
     }
 
+    /**
+     * Metoda vrací recenzenty, kterí daný článek nerecenzují.
+     *
+     * @param $id - id článku
+     * @return array - pole recenzentů
+     */
     public function getPosibleReviewers($id) {
         $q = $this->db->prepare("SELECT * FROM uzivatele WHERE prava = 2 AND id NOT IN (SELECT id_uzivatel FROM recenze WHERE id_prispevek = :id)");
         $q->bindValue(":id", $id);
@@ -59,6 +88,12 @@ class ReviewerModel extends Model
         return $q->fetchAll();
     }
 
+    /**
+     * Metoda přířadí recenzentovy článek.
+     *
+     * @param $id_article - id článku
+     * @param $id_reviewer - id recenzenta
+     */
     public function addReviewer($id_article, $id_reviewer) {
         $q = $this->db->prepare("INSERT INTO recenze (id_uzivatel, id_prispevek, originalita, tema, pravopis, srozumitelnost) 
                                     VALUES (:id_reviewer, :id_article, :orig, :tema, :pravopis, :srozum)");
@@ -73,6 +108,12 @@ class ReviewerModel extends Model
         $q->execute();
     }
 
+    /**
+     * Metoda vrací recenze daného recenzenta.
+     *
+     * @param $id - id recenzenta
+     * @return array|bool - recenze
+     */
     public function getMyReviews($id) {
         $q = $this->db->prepare("SELECT r.originalita, r.pravopis, r.srozumitelnost, r.tema, ((r.originalita + r.pravopis + r.srozumitelnost + r.tema) / 4.0) AS prumer,
                             p.nazev, p.schvaleno, p.pdf, p.id FROM recenze r, prispevky p WHERE r.id_uzivatel = :id AND p.id = r.id_prispevek");
@@ -87,6 +128,12 @@ class ReviewerModel extends Model
         }
     }
 
+    /**
+     * Metoda generuje možnosti formuláře pro úpravu recenzí.
+     *
+     * @param $review - recenze
+     * @return array - html
+     */
     public function getHtmlForTemplate($review) {
         if($review['originalita'] == 0) {
             $val = 1;
@@ -171,6 +218,13 @@ class ReviewerModel extends Model
         return array("originalita" => $originalita, "tema" => $tema, "pravopis" => $pravopis, "srozumitelnost" => $srozumitelnost);
     }
 
+    /**
+     * Metoda vrací recenzi dle id článku a recenzenta.
+     *
+     * @param $id_reviewer - id recenzenta
+     * @param $id_article - id článku
+     * @return mixed|null - recenze
+     */
     public function getReview($id_reviewer, $id_article) {
         $q = $this->db->prepare("SELECT * FROM recenze WHERE id_prispevek = :id_prispevek AND id_uzivatel = :id_uzivatel");
         $q->bindValue(":id_prispevek", $id_article);
@@ -186,6 +240,12 @@ class ReviewerModel extends Model
         }
     }
 
+    /**
+     * Metoda vrací všechny recenze daného článku.
+     *
+     * @param $id - id článku
+     * @return array - recenze článku
+     */
     public function getArticleReviews($id) {
         $q = $this->db->prepare("SELECT originalita, pravopis, srozumitelnost, tema FROM recenze WHERE id_prispevek = :id");
         $q->bindValue(":id", $id);
@@ -194,7 +254,13 @@ class ReviewerModel extends Model
         return $q->fetchAll();
     }
 
-    public function updateReviewDB($review, $id) {
+    /**
+     * Metoda upravuje recenzi
+     *
+     * @param $review - recenze
+     * @param $id - id článku
+     */
+    public function updateReview($review, $id) {
         $q = $this->db->prepare("UPDATE recenze SET originalita = :originalita, tema = :tema, pravopis = :pravopis, srozumitelnost = :srozumitelnost 
                                     WHERE id_prispevek = :id AND id_uzivatel = :id_u");
         $q->bindValue(":originalita", $review['originalita']);
@@ -206,10 +272,12 @@ class ReviewerModel extends Model
         $q->execute();
     }
 
-    public function updateReview($review, $id) {
-        $this->updateReviewDB($review, $id);
-    }
-
+    /**
+     * Metoda vypočítá průměrné hodnocení článku.
+     *
+     * @param $id - id článku
+     * @return float - průmerné hodnocení
+     */
     public function getScore($id) {
         $reviews = $this->getArticleReviews($id);
 
@@ -229,6 +297,12 @@ class ReviewerModel extends Model
         return $finalScore;
     }
 
+    /**
+     * Metoda vrátí články, které recenzuje daný uživatel.
+     *
+     * @param $id - id uživatele
+     * @return array - články
+     */
     public function getReviewedArticles($id) {
         $q = $this->db->prepare("SELECT p.id FROM prispevky p, recenze r WHERE r.id_uzivatel = :id");
         $q->bindValue(":id", $id);

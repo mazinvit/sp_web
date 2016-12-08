@@ -1,20 +1,28 @@
 <?php
-
-namespace Sp\Models;
-use PDO;
-
 /**
  * Created by PhpStorm.
  * User: n5ver
  * Date: 29.11.2016
  * Time: 18:56
  */
+
+namespace Sp\Models;
+use PDO;
+
+/**
+ * Class Model
+ * @package Sp\Models
+ * Rodičovská třída pro modely.
+ */
 class Model
 {
+    /**
+     * @var PDO - spojení do databáze
+     */
     protected $db;
 
     /**
-     * Model constructor.
+     * Konstruktor, který nastaví spojení.
      */
     public function __construct()
     {
@@ -28,7 +36,7 @@ class Model
     }
 
     /**
-     * Model destructor.
+     * Destruktor
      */
     public function __destruct()
     {
