@@ -19,7 +19,7 @@ class ErrorController extends Controller
      * Nechá vykreslit stránku s informací o chybě 404.
      */
     public function error404() {
-        echo $this->twig->render('404.twig');
+        echo $this->twig->render('home/404.twig');
     }
 
     /**
@@ -27,13 +27,13 @@ class ErrorController extends Controller
      * články pro veřejné vypsání.
      */
     public function no_articles() {
-        echo $this->twig->render('no_articles.twig');
+        echo $this->twig->render('home/no_articles.twig');
     }
 
     /**
      * Nechá vykreslit stránku, která informuje o neúspěšném přihlášení.
      */
     public function wrongsign() {
-        echo $this->twig->render('wrongsign.twig');
+        echo $this->twig->render('home/wrongsign.twig');
     }
 }

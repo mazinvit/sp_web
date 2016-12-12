@@ -1,15 +1,15 @@
 <?php
     define('ROOT',dirname(__FILE__). DIRECTORY_SEPARATOR .'..' . DIRECTORY_SEPARATOR);
 
-    // nactes config
+    // nacteni konfigu
     require_once ROOT . 'config/config.php';
 
     session_start();
 
-    /* nacte zavislosti z vendor */
+    // nacte zavislosti z vendor
     require_once ROOT . 'vendor/autoload.php';
 
-    /* nactec tridu rodice */
+    // nactec tridu rodice */
     require ROOT . "controllers" . DIRECTORY_SEPARATOR . 'Controller.php';
 
     $page = @$_REQUEST['page'];
@@ -17,12 +17,11 @@
     $param = @$_REQUEST['param'];
 
     if(empty($page) && empty($action)) {
-        /* nacte home */
+        // nacte home
         require ROOT. "controllers" . DIRECTORY_SEPARATOR . 'HomeController.php';
-        /* vyuzviva namespace co jsem nastavil v te tride samotne */
+        // vyuzviva namespace co jsem nastavil v te tride samotne
         $controller = new Sp\Controlers\HomeController();
         $controller->index();
-        // u if exist namespace nevyuzivej
     } elseif (file_exists(ROOT. "controllers" . DIRECTORY_SEPARATOR . $page . 'Controller.php')) {
         // kdyz existuje vytvor instanci, zde se trida vola uz pres namespace
         require ROOT. "controllers" . DIRECTORY_SEPARATOR . $page . 'Controller.php';
@@ -31,7 +30,7 @@
         // exituje metoda ?
         if (method_exists($controller, $action)) {
             if (empty($param)) {
-                // action = stranka kterou chces
+                // action = stranka kterou chci
                 $controller->{$action}();
             } else {
                 call_user_func_array([$controller, $action], [$param]);

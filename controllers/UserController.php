@@ -38,7 +38,7 @@ class UserController extends Controller
      * Volání vykreslení stránky pro příhlášení.
      */
     public function login_page() {
-        echo $this->twig->render('login_page.twig');
+        echo $this->twig->render('home/login_page.twig');
     }
 
     /**
@@ -77,7 +77,7 @@ class UserController extends Controller
      * Volání vykreslení stránky pro registraci.
      */
     public function register_page() {
-        $template = $this->twig->loadTemplate('register_page.twig');
+        $template = $this->twig->loadTemplate('home/register_page.twig');
         if(isset($_SESSION['alert'])) {
 
             if($_SESSION['alert'] != 0) {

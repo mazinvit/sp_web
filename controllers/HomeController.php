@@ -29,7 +29,7 @@ class HomeController extends Controller
      * Metoda zavolá vykreslení úvodní stránky.
      */
     public function index() {
-        echo $this->twig->render('uvod.twig');
+        echo $this->twig->render('home/uvod.twig');
     }
 
     /**
@@ -47,7 +47,7 @@ class HomeController extends Controller
         }
 
         else {
-            $template = $this->twig->loadTemplate('articles.twig');
+            $template = $this->twig->loadTemplate('home/articles.twig');
             $params['articles'] = $arr;
             echo $template->render($params);
         }
@@ -79,6 +79,6 @@ class HomeController extends Controller
      * Metoda zavolá vykreslení stránky s informacemi o místě a času konání konference.
      */
     public function where() {
-        echo $this->twig->render("where.twig");
+        echo $this->twig->render("home/where.twig");
     }
 }
