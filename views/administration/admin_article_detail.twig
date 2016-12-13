@@ -8,7 +8,7 @@
     <p><strong>PDF: </strong><a href="{{ makeURL('Home', 'download_pdf', '') }}{{ article.pdf }}">{{ article.pdf }}<span class="glyphicon glyphicon-download-alt" aria-hidden="true" style="font-size: 1em;"></span></a></p>
     {% if article.schvaleno == 0 %}
         {% if reviews_count < 3 %}
-            <p><strong>Povolit/zamítnout: </strong><div class="btn btn-static">Přijmout</div>
+            <p><strong>Přijmout/zamítnout: </strong><div class="btn btn-static">Přijmout</div>
             <div class="btn btn-static">Zamítnout</div>
             </p>
         {% else %}
