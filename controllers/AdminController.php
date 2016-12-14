@@ -119,9 +119,30 @@ class AdminController extends Controller
             $this->modelUser = new UserModel();
         }
 
+        if($this->modelReviewer == null) {
+            $this->modelReviewer = new ReviewerModel();
+        }
+
+        if($this->modelArticles == null) {
+            $this->modelArticles = new ArticlesModel();
+        }
+
         if($this->modelUser->isAdmin()) {
             $id = $_POST['id'];
             $rights = $_POST['rights'];
+
+            //pokud byl recenzent, upravit prumer clanku
+            if($this->modelUser->isReviewer($id)) {
+                //ziskam id vsech clanku, ktere recenzoval
+                $articles = $this->modelReviewer->getReviewedArticles($id);
+                //vymazu jeho recenze
+                $this->modelReviewer->deleteReviewsByReviewer($id);
+                //upravim prumerne hodnoceni dle zbyvajicich recenzi
+                foreach ($articles as $article) {
+                    $score = $this->modelReviewer->getScore($article['id']);
+                    $this->modelArticles->updateArticleScore($article['id'], $score);
+                }
+            }
 
             if ($this->modelUser->setRigths($id, $rights)) {
                 $this->after_change(1);

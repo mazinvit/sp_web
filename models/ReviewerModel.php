@@ -292,7 +292,7 @@ class ReviewerModel extends Model
             $count++;
         }
 
-        $finalScore = $score / (double)($count * 4);
+        @$finalScore = $score / (double)($count * 4);
 
         return $finalScore;
     }
@@ -308,5 +308,16 @@ class ReviewerModel extends Model
         $q->bindValue(":id", $id);
         $q->execute();
         return $q->fetchAll();
+    }
+
+    /**
+     * Odebere všechny recenze daného uživatele
+     *
+     * @param $id - id článku
+     */
+    public function deleteReviewsByReviewer($id) {
+        $q = $this->db->prepare("DELETE FROM recenze WHERE id_uzivatel = :id");
+        $q->bindValue(":id", $id);
+        $q->execute();
     }
 }
